@@ -6,7 +6,9 @@ using UnityEngine.AI;
 
 public class BaseEnemy : MonoBehaviour
 {
-    [SerializeField] Transform target;
+    [SerializeField] EnemyStats stats;
+
+    Transform target;
     private NavMeshAgent agent;
     SpriteRenderer sprite;
     void Start()
@@ -18,8 +20,10 @@ public class BaseEnemy : MonoBehaviour
     }
     void Update()
     {
+        SelectTarget();
+
         agent.SetDestination(target.position);
-        if(target.position.x < gameObject.transform.position.x)
+        if (target.position.x < gameObject.transform.position.x)
         {
             sprite.flipX = true;
         }
@@ -27,5 +31,22 @@ public class BaseEnemy : MonoBehaviour
         {
             sprite.flipX = false;
         }
+    }
+
+    private void SelectTarget()
+    {
+        switch (stats.mainTarget)
+        {
+            case MainTarget.Bed:
+                break;
+
+            case MainTarget.Player:
+                break;
+
+            case MainTarget.Buildings:
+                break;
+        }
+
+
     }
 }
