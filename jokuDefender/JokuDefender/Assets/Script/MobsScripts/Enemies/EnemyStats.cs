@@ -6,9 +6,11 @@ using UnityEngine;
 public class EnemyStats : ScriptableObject
 {
     public string enemyName;
+    public GameObject prefab;
     public MainTarget mainTarget;
     public int healthPoints;
     public int damage;
+    public float speed;
     public int costInPoints;
 }
 

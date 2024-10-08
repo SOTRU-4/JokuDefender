@@ -11,12 +11,14 @@ public class BaseEnemy : MonoBehaviour
     Transform target;
     private NavMeshAgent agent;
     SpriteRenderer sprite;
-    void Start()
+    private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
         sprite = GetComponent<SpriteRenderer>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
+
+        agent.speed = stats.speed;
     }
     void Update()
     {
@@ -38,6 +40,8 @@ public class BaseEnemy : MonoBehaviour
         switch (stats.mainTarget)
         {
             case MainTarget.Bed:
+                target = Bed.bedPosition;
+                agent.SetDestination(target.position);
                 break;
 
             case MainTarget.Player:
