@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: Zombie
   m_EditorClassIdentifier: 
   enemyName: Zombie
+  prefab: {fileID: 3898869990277254995, guid: 32158aa84f392d74985945e59e08d2b9, type: 3}
   mainTarget: 0
   healthPoints: 5
   damage: 1
+  speed: 2
   costInPoints: 1

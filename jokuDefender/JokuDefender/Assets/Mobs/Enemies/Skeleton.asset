@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: Skeleton
   m_EditorClassIdentifier: 
   enemyName: Skeleton Warrior
+  prefab: {fileID: 8869399686933509210, guid: 793ce5e5936e9524b8bfc3be572dc1bf, type: 3}
   mainTarget: 0
-  healthPoints: 7
+  healthPoints: 5
   damage: 2
+  speed: 3.5
   costInPoints: 2
