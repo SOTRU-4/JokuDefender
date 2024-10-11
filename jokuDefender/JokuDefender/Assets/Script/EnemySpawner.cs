@@ -1,53 +1,61 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class EnemySpawner : MonoBehaviour
+public class EnemySpawner : Wave
 {
-    public int currentWave {  get; private set; }
-    [SerializeField] int wavePoints;
+    float spawnTime;
+    int points;
+    float waitBeforeStartWave;
     [SerializeField] List<Transform> SpawnPoints = new List<Transform>();
     [SerializeField] List<EnemyStats> enemies = new List<EnemyStats>();
 
     void Start()
     {
-        StartCoroutine(PreWave());
+        preWaveState = true;
+        Wave(preWaveState);
     }
 
-
-    void Update()
+    void Wave(bool isPreWave)
     {
-        
+        if (isPreWave)
+        {
+            points = GetNewWavePoints() / 2;
+            spawnTime = Random.Range(3, 5);
+            waitBeforeStartWave = 5;
+        }
+        else { points = GetNewWavePoints(); spawnTime = 0.5f; waitBeforeStartWave = 10; }
+
+        StartCoroutine(Spawn(points, spawnTime));
     }
 
-    IEnumerator PreWave()
+    IEnumerator Spawn(int points, float SpawnPerSec)
     {
-        if(currentWave <= 5) { wavePoints += 5; }
-        else { wavePoints += 10; }
+        yield return new WaitForSeconds(waitBeforeStartWave);
 
-        for (int wavePoints = this.wavePoints; wavePoints > 0;)
+        while (points > 0) 
         {
             int randomEnemy = Random.Range(0, enemies.Count);
             int randomSpawnPos = Random.Range(0, SpawnPoints.Count);
 
             int enemyCost = enemies[randomEnemy].costInPoints;
 
-            if (enemyCost > wavePoints)
+            if (enemyCost > points)
             {
-                Debug.Log("Spawn Canceled");
                 continue;
             }
 
-            float randomSpawnTime = Random.Range(2, 5);
-            yield return new WaitForSeconds(randomSpawnTime);
-
+            yield return new WaitForSeconds(SpawnPerSec);
 
             Vector2 spawPos = new Vector2(SpawnPoints[randomSpawnPos].transform.position.x, SpawnPoints[randomSpawnPos].transform.position.y);
             GameObject prefab = enemies[randomEnemy].prefab;
 
             Instantiate(prefab, spawPos, Quaternion.identity);
-            wavePoints -= enemyCost;
+            points -= enemyCost;
         }
+        StopCoroutine(Spawn(points, spawnTime));
+        NextWave();
+        Wave(preWaveState);
     }
 }
