@@ -6,8 +6,8 @@ using UnityEngine.AI;
 
 public class BaseEnemy : MonoBehaviour
 {
-    [SerializeField] EnemyStats stats;
-
+    public EnemyStats stats;
+    
     Transform target;
     private NavMeshAgent agent;
     SpriteRenderer sprite;
@@ -23,16 +23,7 @@ public class BaseEnemy : MonoBehaviour
     void Update()
     {
         SelectTarget();
-
-        agent.SetDestination(target.position);
-        if (target.position.x < gameObject.transform.position.x)
-        {
-            sprite.flipX = true;
-        }
-        else
-        {
-            sprite.flipX = false;
-        }
+        
     }
 
     private void SelectTarget()
@@ -51,6 +42,14 @@ public class BaseEnemy : MonoBehaviour
                 break;
         }
 
-
+        agent.SetDestination(target.position);
+        if (target.position.x < gameObject.transform.position.x)
+        {
+            sprite.flipX = true;
+        }
+        else
+        {
+            sprite.flipX = false;
+        }
     }
 }
