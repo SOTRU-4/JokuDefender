@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.U2D;
 
-public class playermovement : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     public float movespeed;
     float speedx, speedy;
@@ -12,7 +12,7 @@ public class playermovement : MonoBehaviour
     private Animator animator;
     private SpriteRenderer sprite;
 
-    private float cooldown = 1;
+    public float cooldown = 0.5f;
     private float lastusedtime;
 
     public GameObject weapononhand;
@@ -21,6 +21,12 @@ public class playermovement : MonoBehaviour
     public GameObject weaponprefab;
     private Vector3 weaponposition;
 
+    public static PlayerController instance;
+
+    public void Awake()
+    {
+        instance = this;
+    }
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -59,7 +65,7 @@ public class playermovement : MonoBehaviour
             {
                 lastusedtime = Time.time;
                 weapononhand.SetActive(false);
-                attack(lookdir);
+                Attack(lookdir);
             }
         }
 
@@ -76,8 +82,7 @@ public class playermovement : MonoBehaviour
         }
         rb.velocity = new Vector2(speedx, speedy);
     }
-
-    void attack(Vector2 target)
+    void Attack(Vector2 target)
     {
         Debug.Log(target);
         GameObject bullet = Instantiate(weaponprefab, weaponposition + transform.position, Quaternion.Euler(new Vector3(0, 0, angle - 90)));

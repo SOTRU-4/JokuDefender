@@ -195,6 +195,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movespeed: 2.5
+  cooldown: 0.5
   weapononhand: {fileID: 4746154164272003204}
   weaponprefab: {fileID: 2069505726422849466, guid: e25bea9df83ec484f974714b2ba29ce7, type: 3}
 --- !u!1 &4746154164272003204
