@@ -1,7 +1,4 @@
-using NavMeshPlus.Extensions;
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -33,8 +30,8 @@ public class BaseEnemy : MonoBehaviour
     {
 
         behavior.SetTarget();
-
         agent.SetDestination(behavior.target.position);
+
         if (behavior.target.position.x < gameObject.transform.position.x)
         {
             sprite.flipX = true;
@@ -47,6 +44,19 @@ public class BaseEnemy : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        stats.healthPoints -= damage;
+        if(stats.healthPoints <= 0)
+        {
+            Destroy(gameObject);
+            Debug.Log(stats.name + " get hit!");
+        }
+    }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag != "Enemy")
+        {
+            
+        }
     }
 }

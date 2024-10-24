@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -18,21 +20,24 @@ public class Behavior
 
     public void SetTarget()
     {
-        if (target == null)
+        switch (mainTarget)
         {
-            switch (mainTarget)
-            {
-                case MainTarget.Bed:
-                    target = Bed.bedPosition;
+            case MainTarget.Bed:
+                target = Bed.bedPosition;
 
-                    break;
+                Collider2D hit = Physics2D.OverlapCircle(enemy.transform.position, 3, 6);
+                if (hit != null)
+                {
+                    target = hit.transform;
+                }
+                break;
 
-                case MainTarget.Player:
-                    break;
+            case MainTarget.Player:
+                target = PlayerController.instance.transform;
+                break;
 
                 case MainTarget.Buildings:
                     break;
             }
-        }
     }
 }

@@ -18,4 +18,13 @@ public class Bed : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    public void TakeDamage(int damage)
+    {
+        healthPoints -= damage;
+        if (healthPoints <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
 }
