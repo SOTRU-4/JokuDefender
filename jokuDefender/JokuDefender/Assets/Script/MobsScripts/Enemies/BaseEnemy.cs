@@ -1,16 +1,18 @@
 using NavMeshPlus.Extensions;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class BaseEnemy : MonoBehaviour
 {
-    [SerializeField] EnemyStats stats;
-
+    public EnemyStats stats;
+    
     Transform target;
-    private NavMeshAgent agent;
+    [HideInInspector]public NavMeshAgent agent;
     SpriteRenderer sprite;
+    Behavior behavior;
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -19,13 +21,21 @@ public class BaseEnemy : MonoBehaviour
         agent.updateUpAxis = false;
 
         agent.speed = stats.speed;
+
+        behavior = new Behavior(this);
     }
     void Update()
     {
-        SelectTarget();
+        MoveToTarget();
+    }
 
-        agent.SetDestination(target.position);
-        if (target.position.x < gameObject.transform.position.x)
+    private void MoveToTarget()
+    {
+
+        behavior.SetTarget();
+
+        agent.SetDestination(behavior.target.position);
+        if (behavior.target.position.x < gameObject.transform.position.x)
         {
             sprite.flipX = true;
         }
@@ -35,22 +45,8 @@ public class BaseEnemy : MonoBehaviour
         }
     }
 
-    private void SelectTarget()
+    public void TakeDamage(int damage)
     {
-        switch (stats.mainTarget)
-        {
-            case MainTarget.Bed:
-                target = Bed.bedPosition;
-                agent.SetDestination(target.position);
-                break;
-
-            case MainTarget.Player:
-                break;
-
-            case MainTarget.Buildings:
-                break;
-        }
-
 
     }
 }
