@@ -11,16 +11,17 @@ public class WeaponScript : MonoBehaviour
 
     private void Start()
     {
-        damage = 3;
+        damage = 1;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("OSU");
         if (collision.gameObject.CompareTag("Enemy"))
         {
             Debug.Log("TOIMII");
-            //en tiiä miten statít oikeen toimii koitin saada toimimaan joku tunnin mut en tajunnu
+            collision.TryGetComponent(out BaseEnemy enemy);
+
+            enemy.TakeDamage(damage);
             Destroy(gameObject);
         }
     }
