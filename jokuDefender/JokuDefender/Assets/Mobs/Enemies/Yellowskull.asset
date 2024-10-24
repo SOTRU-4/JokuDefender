@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fa69dee4f8dd614eb99234f1e85a869, type: 3}
   m_Name: Yellowskull
   m_EditorClassIdentifier: 
-  enemyName: 
-  prefab: {fileID: 0}
-  mainTarget: 0
-  healthPoints: 0
-  damage: 0
-  speed: 0
-  costInPoints: 0
+  enemyName: Yellow skull
+  prefab: {fileID: 4353658330802308513, guid: 0b10e47822a4e734eab1715c41f6dde3, type: 3}
+  mainTarget: 2
+  healthPoints: 6
+  damage: 3
+  speed: 3
+  costInPoints: 4

@@ -15,7 +15,7 @@ MonoBehaviour:
   enemyName: Blue Slime
   prefab: {fileID: 1877535216758278468, guid: eb445f1ed640ff74dad24fe5f9be3902, type: 3}
   mainTarget: 0
-  healthPoints: 6
+  healthPoints: 7
   damage: 1
-  speed: 2
-  costInPoints: 1
+  speed: 2.5
+  costInPoints: 2

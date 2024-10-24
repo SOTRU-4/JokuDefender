@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fa69dee4f8dd614eb99234f1e85a869, type: 3}
   m_Name: PurpleSkull
   m_EditorClassIdentifier: 
-  enemyName: 
-  prefab: {fileID: 0}
-  mainTarget: 0
-  healthPoints: 0
-  damage: 0
-  speed: 0
-  costInPoints: 0
+  enemyName: Purple Skull
+  prefab: {fileID: 3185738789777546389, guid: d2efda70d39a62c43bc6d60890c45151, type: 3}
+  mainTarget: 1
+  healthPoints: 14
+  damage: 5
+  speed: 4
+  costInPoints: 8

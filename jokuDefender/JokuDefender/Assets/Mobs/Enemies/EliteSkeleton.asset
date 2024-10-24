@@ -15,7 +15,7 @@ MonoBehaviour:
   enemyName: Elite Skeleton
   prefab: {fileID: 86684806794274501, guid: 0630f33712291b8458de0bdbe3846134, type: 3}
   mainTarget: 0
-  healthPoints: 8
-  damage: 3
-  speed: 3.5
-  costInPoints: 4
+  healthPoints: 10
+  damage: 4
+  speed: 3
+  costInPoints: 5

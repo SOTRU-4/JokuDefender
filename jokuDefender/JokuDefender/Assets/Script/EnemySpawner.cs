@@ -66,7 +66,7 @@ public class EnemySpawner : Wave
     List<EnemyStats> ThisWaveEnemies()
     {
         List<EnemyStats> currentEnemies = new List<EnemyStats>();
-        if(currentWave <= 2)
+        if(currentWave <= 3)
         {
             foreach (EnemyStats enemy in enemies)
             {
@@ -77,7 +77,7 @@ public class EnemySpawner : Wave
             }
         }
 
-        if (currentWave > 2 && currentWave <= 5)
+        if (currentWave > 3 && currentWave <= 6)
         {
             foreach (EnemyStats enemy in enemies)
             {

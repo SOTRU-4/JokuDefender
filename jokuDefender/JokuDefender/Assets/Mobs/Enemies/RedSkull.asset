@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fa69dee4f8dd614eb99234f1e85a869, type: 3}
   m_Name: RedSkull
   m_EditorClassIdentifier: 
-  enemyName: 
-  prefab: {fileID: 0}
+  enemyName: Red Skull
+  prefab: {fileID: 3024472239503303483, guid: c55d9edced2a1ee4c8f88cdad7e51cc7, type: 3}
   mainTarget: 0
-  healthPoints: 0
-  damage: 0
-  speed: 0
-  costInPoints: 0
+  healthPoints: 8
+  damage: 3
+  speed: 3.5
+  costInPoints: 4
