@@ -1,13 +1,15 @@
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class BaseEnemy : MonoBehaviour
+[RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(NavMeshAgent))]
+public class BaseEnemy : MonoBehaviour, ITakeDamage
 {
     public EnemyStats stats;
-    
     Transform target;
-    [HideInInspector]public NavMeshAgent agent;
+    [HideInInspector] public NavMeshAgent agent;
     SpriteRenderer sprite;
     Behavior behavior;
     private void Awake()
@@ -20,10 +22,12 @@ public class BaseEnemy : MonoBehaviour
         agent.speed = stats.speed;
 
         behavior = new Behavior(this);
+
     }
     void Update()
     {
         MoveToTarget();
+
     }
 
     private void MoveToTarget()
@@ -52,11 +56,4 @@ public class BaseEnemy : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if(collision.gameObject.tag != "Enemy")
-        {
-            
-        }
-    }
 }
