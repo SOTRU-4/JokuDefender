@@ -25,10 +25,10 @@ public class Behavior
             case MainTarget.Bed:
                 target = Bed.bedPosition;
 
-                Collider2D hit = Physics2D.OverlapCircle(enemy.transform.position, 3, 6);
-                if (hit != null)
+                Collider2D player = Physics2D.OverlapCircle(enemy.transform.position, 3, 6);
+                if (player != null)
                 {
-                    target = hit.transform;
+                    target = player.transform;
                 }
                 break;
 

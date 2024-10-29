@@ -142,8 +142,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.036665678, y: 0.032082498}
-  m_Size: {x: 0.57834435, y: 0.78917205}
+  m_Offset: {x: 0.036665678, y: 0.03357148}
+  m_Size: {x: 0.6259918, y: 0.85170907}
   m_Direction: 0
 --- !u!195 &7543574651467207635
 NavMeshAgent:
@@ -154,7 +154,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 3898869990277254995}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 0.4
   m_Speed: 2
   m_Acceleration: 8
   avoidancePriority: 50
@@ -180,7 +180,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats: {fileID: 11400000, guid: d41459640e96a8f47959af0848627352, type: 2}
-  attackRange: 0
   agent: {fileID: 0}
 --- !u!50 &-7845051080966466404
 Rigidbody2D:

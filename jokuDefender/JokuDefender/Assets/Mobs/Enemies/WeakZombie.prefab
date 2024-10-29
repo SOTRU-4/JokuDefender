@@ -98,9 +98,10 @@ GameObject:
   - component: {fileID: 5874565555934552410}
   - component: {fileID: -7596819287589754220}
   - component: {fileID: 4395270166121131616}
+  - component: {fileID: -8465619694242590353}
   m_Layer: 0
   m_Name: WeakZombie
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -207,7 +208,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats: {fileID: 11400000, guid: ead8a3f15504247418fd1caf7a50bdf1, type: 2}
-  attackRange: 0
   agent: {fileID: 0}
 --- !u!195 &-7596819287589754220
 NavMeshAgent:
@@ -218,7 +218,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1125217912625589204}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 0.37
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -258,3 +258,38 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!70 &-8465619694242590353
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1125217912625589204}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.01105811, y: 0}
+  m_Size: {x: 0.55451375, y: 1}
+  m_Direction: 0
