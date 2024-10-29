@@ -194,10 +194,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a55a1cd9388d5ce4aa337acd3d37dd97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movespeed: 2.5
+  moveSpeed: 0
   cooldown: 0.5
   weapononhand: {fileID: 4746154164272003204}
-  weaponprefab: {fileID: 2069505726422849466, guid: e25bea9df83ec484f974714b2ba29ce7, type: 3}
+  CurrentWeaponPrefab: {fileID: 0}
+  Slashprefab: {fileID: 0}
+  shovelprefab: {fileID: 0}
 --- !u!1 &4746154164272003204
 GameObject:
   m_ObjectHideFlags: 0
