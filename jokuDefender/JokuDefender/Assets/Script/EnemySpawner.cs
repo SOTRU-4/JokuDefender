@@ -36,10 +36,11 @@ public class EnemySpawner : Wave
     IEnumerator Spawn(int points, float SpawnPerSec)
     {
         yield return new WaitForSeconds(waitBeforeStartWave);
+        var thisWaveEnemies = EnemiesOfThisWave();
 
         while (points > 0) 
         {
-            var thisWaveEnemies = ThisWaveEnemies();
+            
             int randomEnemy = Random.Range(0, thisWaveEnemies.Count);
             int randomSpawnPos = Random.Range(0, SpawnPoints.Count);
 
@@ -63,28 +64,33 @@ public class EnemySpawner : Wave
         NextWave();
         Wave(preWaveState);
     }
-    List<EnemyStats> ThisWaveEnemies()
+    List<EnemyStats> EnemiesOfThisWave()
     {
         List<EnemyStats> currentEnemies = new List<EnemyStats>();
+
+        
+
         if(currentWave <= 3)
         {
-            foreach (EnemyStats enemy in enemies)
+            for (int i = 0; i < enemies.Count; i++)
             {
-                if (enemy.costInPoints <= 2)
+                if (enemies[i].costInPoints <= 2)
                 {
-                    currentEnemies.Add(enemy);
+                    currentEnemies.Add(enemies[i]);
                 }
+                Debug.Log("From FIRST wave");
             }
         }
 
-        if (currentWave > 3 && currentWave <= 6)
+        else if (currentWave >= 3 && currentWave <= 6)
         {
-            foreach (EnemyStats enemy in enemies)
+            for (int i = 0; i < enemies.Count; i++)
             {
-                if (enemy.costInPoints <= 5)
+                if (enemies[i].costInPoints <= 5)
                 {
-                    currentEnemies.Add(enemy);
+                    currentEnemies.Add(enemies[i]);
                 }
+                Debug.Log("From SECOND wave");
             }
         }
         else
@@ -92,6 +98,7 @@ public class EnemySpawner : Wave
             for (int i = 0; i < enemies.Count; i++)
             {
                 currentEnemies.Add(enemies[i]);
+                Debug.Log("From THIRD wave");
             }
         }
 

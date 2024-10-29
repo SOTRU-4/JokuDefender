@@ -1,16 +1,15 @@
-using NavMeshPlus.Extensions;
 using System.Collections;
-using System.Collections.Generic;
-using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class BaseEnemy : MonoBehaviour
+[RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(NavMeshAgent))]
+public class BaseEnemy : MonoBehaviour, ITakeDamage
 {
     public EnemyStats stats;
-    
     Transform target;
-    [HideInInspector]public NavMeshAgent agent;
+    [HideInInspector] public NavMeshAgent agent;
     SpriteRenderer sprite;
     Behavior behavior;
     private void Awake()
@@ -23,18 +22,20 @@ public class BaseEnemy : MonoBehaviour
         agent.speed = stats.speed;
 
         behavior = new Behavior(this);
+
     }
     void Update()
     {
         MoveToTarget();
+
     }
 
     private void MoveToTarget()
     {
 
         behavior.SetTarget();
-
         agent.SetDestination(behavior.target.position);
+
         if (behavior.target.position.x < gameObject.transform.position.x)
         {
             sprite.flipX = true;
@@ -47,6 +48,12 @@ public class BaseEnemy : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-
+        stats.healthPoints -= damage;
+        if(stats.healthPoints <= 0)
+        {
+            Destroy(gameObject);
+            Debug.Log(stats.name + " get hit!");
+        }
     }
+
 }
