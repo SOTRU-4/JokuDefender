@@ -62,8 +62,8 @@ public class BaseEnemy : MonoBehaviour, ITakeDamage
     }
     public void TakeDamage(int damage)
     {
-        stats.healthPoints -= damage;
-        if (stats.healthPoints <= 0)
+        healthPoints -= damage;
+        if (healthPoints <= 0)
         {
             Destroy(gameObject);
             Debug.Log(stats.name + " get hit!");
@@ -74,7 +74,7 @@ public class BaseEnemy : MonoBehaviour, ITakeDamage
     {
         if (collision.gameObject.TryGetComponent(out ITakeDamage target) && collision.gameObject.tag != "Enemy" && delay <= 0)
         {
-            target.TakeDamage(stats.damage);
+            target.TakeDamage(damage);
             delay = 1;
         }
 
