@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0d5e657ee5a074e4baa53d5b248a01d2
+guid: 92f536023a4269242aee8d7fd5bb4c31
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -149,7 +149,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Weapon 0
+      name: ShovelOnhand
       rect:
         serializedVersion: 2
         x: 0
@@ -170,7 +170,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Weapon 1
+      name: PitchforkOnhand
       rect:
         serializedVersion: 2
         x: 19
@@ -191,7 +191,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Weapon 2
+      name: ScytheOnhand
       rect:
         serializedVersion: 2
         x: 38
@@ -212,7 +212,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Weapon 3
+      name: FlintlockOnhand
       rect:
         serializedVersion: 2
         x: 0
@@ -233,7 +233,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Weapon 4
+      name: MachinegunOnhand
       rect:
         serializedVersion: 2
         x: 19
@@ -565,18 +565,18 @@ TextureImporter:
       Exp 0: 362616440
       Exp 1: 1807624531
       Exp 2: -1997803578
+      FlintlockOnhand: -353751291
       Health: 934571490
+      MachinegunOnhand: -144335857
       Mag: 1997828774
       Pitchfork: -703694536
+      PitchforkOnhand: -1972582131
       Scythe: 762804792
+      ScytheOnhand: 1349035616
       Shadow: 1304559308
       ShotgunOnhand: 1772703093
       Shovel: 1737672109
-      Weapon 0: 143021600
-      Weapon 1: -1972582131
-      Weapon 2: 1349035616
-      Weapon 3: -353751291
-      Weapon 4: -144335857
+      ShovelOnhand: 143021600
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -12,6 +12,14 @@ public class WeaponScript : MonoBehaviour
     private void Start()
     {
         damage = 1;
+        if (gameObject.name == "SlashPrefab(Clone)")
+        {
+            Destroy(gameObject, 0.1f);
+        }
+        else
+        {
+            Destroy(gameObject, 30f);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

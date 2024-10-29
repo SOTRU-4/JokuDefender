@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -49,6 +50,7 @@ public class BaseEnemy : MonoBehaviour, ITakeDamage
     public void TakeDamage(int damage)
     {
         stats.healthPoints -= damage;
+        Debug.Log(stats.healthPoints);
         if(stats.healthPoints <= 0)
         {
             Destroy(gameObject);
