@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6755438750515874335}
   - component: {fileID: 2835701572798027309}
   - component: {fileID: 4298236395520981731}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1833213013255874523}
@@ -181,7 +181,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &4298236395520981731
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -194,12 +194,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a55a1cd9388d5ce4aa337acd3d37dd97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0
-  cooldown: 0.5
+  moveSpeed: 3
+  healthPoints: 20
   weapononhand: {fileID: 4746154164272003204}
-  CurrentWeaponPrefab: {fileID: 0}
-  Slashprefab: {fileID: 0}
-  shovelprefab: {fileID: 0}
+  Slashprefab: {fileID: 3770910126948194584, guid: 23d4c7f80bb27474cbfc1b1925dcfcdb, type: 3}
 --- !u!1 &4746154164272003204
 GameObject:
   m_ObjectHideFlags: 0
@@ -273,7 +271,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1972582131, guid: 0d5e657ee5a074e4baa53d5b248a01d2, type: 3}
+  m_Sprite: {fileID: 143021600, guid: 0d5e657ee5a074e4baa53d5b248a01d2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
