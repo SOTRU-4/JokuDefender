@@ -1,5 +1,3 @@
-using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -11,14 +9,16 @@ public class BaseEnemy : MonoBehaviour, ITakeDamage
     Transform target;
     [HideInInspector] public NavMeshAgent agent;
     SpriteRenderer sprite;
-    Behavior behavior;
+    [HideInInspector] public EnemyBehavior behavior {  get; private set; }
     float delay = 1;
+    public bool isPlayerNearbye = false;
+    Animator animator;
 
     [Header("Stats")]
     public int healthPoints;
     public int damage;
     public float speed;
-
+    public LayerMask PlayerLayer;
     private void Awake()
     {
         Init();
@@ -28,7 +28,7 @@ public class BaseEnemy : MonoBehaviour, ITakeDamage
         MoveToTarget();
         delay -= Time.deltaTime;
     }
-
+    
     private void MoveToTarget()
     {
 
@@ -49,6 +49,7 @@ public class BaseEnemy : MonoBehaviour, ITakeDamage
     {
         agent = GetComponent<NavMeshAgent>();
         sprite = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
 
@@ -58,11 +59,12 @@ public class BaseEnemy : MonoBehaviour, ITakeDamage
 
         agent.speed = speed;
 
-        behavior = new Behavior(this);
+        behavior = new EnemyBehavior(this);
     }
     public void TakeDamage(int damage)
     {
         healthPoints -= damage;
+        animator.SetTrigger("Hit");
         if (healthPoints <= 0)
         {
             Destroy(gameObject);
@@ -79,5 +81,8 @@ public class BaseEnemy : MonoBehaviour, ITakeDamage
         }
 
     }
-
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(transform.position, 3);
+    }
 }
