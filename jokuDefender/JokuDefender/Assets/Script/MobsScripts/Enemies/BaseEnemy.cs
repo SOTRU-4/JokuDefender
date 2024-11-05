@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class BaseEnemy : MonoBehaviour, ITakeDamage
 {
     public EnemyStats stats;
+    [SerializeField] HealthBar healthBar;
     Transform target;
     [HideInInspector] public NavMeshAgent agent;
     SpriteRenderer sprite;
@@ -60,15 +61,18 @@ public class BaseEnemy : MonoBehaviour, ITakeDamage
         agent.speed = speed;
 
         behavior = new EnemyBehavior(this);
+
+        healthBar.SetHealth(healthPoints);
+        healthBar.maxHealth = healthPoints;
     }
     public void TakeDamage(int damage)
     {
         healthPoints -= damage;
+        healthBar.SetHealth(healthPoints);
         animator.SetTrigger("Hit");
         if (healthPoints <= 0)
         {
             Destroy(gameObject);
-            Debug.Log(stats.name + " get hit!");
         }
     }
 

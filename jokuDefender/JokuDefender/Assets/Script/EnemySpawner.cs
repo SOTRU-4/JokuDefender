@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class EnemySpawner : Wave
 {
@@ -11,6 +9,7 @@ public class EnemySpawner : Wave
     float waitBeforeStartWave = 10;
     [SerializeField] List<Transform> SpawnPoints = new List<Transform>();
     [SerializeField] List<EnemyStats> enemies = new List<EnemyStats>();
+
 
     void Start()
     {
@@ -70,7 +69,7 @@ public class EnemySpawner : Wave
 
         
 
-        if(currentWave <= 3)
+        if(currentWave <= 2)
         {
             for (int i = 0; i < enemies.Count; i++)
             {
@@ -82,7 +81,7 @@ public class EnemySpawner : Wave
             }
         }
 
-        else if (currentWave >= 3 && currentWave <= 6)
+        else if (currentWave >= 3 && currentWave <= 5)
         {
             for (int i = 0; i < enemies.Count; i++)
             {
