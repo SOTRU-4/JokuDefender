@@ -10,9 +10,11 @@ public class WeaponScript : MonoBehaviour
     private BaseEnemy enemy;
     private ScriptableObject stats;
     private Rigidbody2D rb;
+    private float speed;
 
     private void Start()
     {
+        speed = UnityEngine.Random.Range(16, 20);
         rb = GetComponent<Rigidbody2D>();
         if (gameObject.name == "SlashPrefab(Clone)")
         {
@@ -20,14 +22,14 @@ public class WeaponScript : MonoBehaviour
         }
         else
         {
-            Destroy(gameObject, 30f);
+            Destroy(gameObject, 15);
         }
     }
     private void FixedUpdate()
     {
         if (gameObject.name != "SlashPrefab(Clone)")
         {
-            rb.MovePosition(rb.position + (Vector2)transform.up * Time.deltaTime * 10);
+            rb.MovePosition(rb.position + (Vector2)transform.up * Time.deltaTime * speed);
         }
     }
 
@@ -39,11 +41,7 @@ public class WeaponScript : MonoBehaviour
             collision.TryGetComponent(out BaseEnemy enemy);
 
             enemy.TakeDamage(damage);
-            if (gameObject.name == "SlashPrefab(Clone)")
-            {
-                Destroy(collision.GetComponent<BoxCollider2D>());
-            }
-            else
+            if (gameObject.name != "SlashPrefab(Clone)")
             {
                 Destroy(gameObject);
             }

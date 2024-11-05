@@ -2,16 +2,21 @@ using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.U2D;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour, ITakeDamage
 {
     public float moveSpeed;
-    public int healthPoints = 20;
+    public int HealthPoints = 20;
     float speedX, speedY;
     Rigidbody2D rb;
+
+    public int PlayerGold;
+    public GameObject playerui;
+    public Text GoldText;
+    public Text moneyincrease;
 
     private Animator Animator;
     private SpriteRenderer sprite;
@@ -58,7 +63,7 @@ public class PlayerController : MonoBehaviour, ITakeDamage
         cooldowns["Pitchfork"] = 0.8f;
         cooldowns["Flintlock"] = 1.2f;
         cooldowns["Shotgun"] = 1.5f;
-        cooldowns["Machinegun"] = 0.15f;
+        cooldowns["Machinegun"] = 0.1f;
 
         SetWeapon(Weapon.Shovel);
     }
@@ -111,10 +116,20 @@ public class PlayerController : MonoBehaviour, ITakeDamage
         rb.velocity = new Vector2(speedX, speedY);
     }
 
+    public void AddGold(int Gold)
+    {
+        PlayerGold += Gold;
+        GoldText.text = "Gold: " + PlayerGold;
+
+        Text Moneyprefab = Instantiate(moneyincrease);
+
+        Moneyprefab.transform.SetParent(playerui.transform);
+        Moneyprefab.text = "+" + Gold;
+    }
     public void TakeDamage(int damage)
     {
-        healthPoints -= damage;
-        if (healthPoints <= 0)
+        HealthPoints -= damage;
+        if (HealthPoints <= 0)
         {
             Destroy(gameObject);
         }
@@ -148,14 +163,14 @@ public class PlayerController : MonoBehaviour, ITakeDamage
                 bullet.GetComponent<SpriteRenderer>().flipY = true;
             }
             Rigidbody2D bulletrb = bullet.GetComponent<Rigidbody2D>();
-            bulletrb.transform.position = weapononhand.transform.position + target.normalized * 1f;
+            bulletrb.transform.position = weapononhand.transform.position + target.normalized * 3f;
             bulletrb.velocity = target.normalized * 5;
             bullet.GetComponent<WeaponScript>().damage = 2;
         }
         else if (CurrentWeapon == Weapon.Pitchfork)
         {
             weapononhand.SetActive(false);
-            float spread = UnityEngine.Random.Range(-5,5);
+            float spread = UnityEngine.Random.Range(-4,4);
 
             GameObject bullet = Instantiate(CurrentWeaponPrefab, weaponposition + transform.position, Quaternion.Euler(new Vector3(0, 0, angle - 90 + spread)));
             Rigidbody2D bulletrb = bullet.GetComponent<Rigidbody2D>();
@@ -164,14 +179,14 @@ public class PlayerController : MonoBehaviour, ITakeDamage
         }
         else if (CurrentWeapon == Weapon.Flintlock)
         {
-            float spread = UnityEngine.Random.Range(-3, 3);
+            float spread = UnityEngine.Random.Range(-2, 2);
             GameObject bullet = Instantiate(CurrentWeaponPrefab, weaponposition + transform.position, Quaternion.Euler(new Vector3(0, 0, angle - 90 + spread)));
             bullet.transform.position = weapononhand.transform.position + target.normalized * 0.6f;
-            bullet.GetComponent<WeaponScript>().damage = 5;
+            bullet.GetComponent<WeaponScript>().damage = 10;
         }
         else if (CurrentWeapon == Weapon.Shotgun)
         {
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < 6; i++)
             {
                 float spread = UnityEngine.Random.Range(-20, 20);
                 GameObject bullet = Instantiate(CurrentWeaponPrefab, weaponposition + transform.position, Quaternion.Euler(new Vector3(0, 0, angle - 90 + spread)));
@@ -181,10 +196,10 @@ public class PlayerController : MonoBehaviour, ITakeDamage
         }
         else if (CurrentWeapon == Weapon.Machinegun)
         {
-            float spread = UnityEngine.Random.Range(-8, 8);
+            float spread = UnityEngine.Random.Range(-7, 7);
             GameObject bullet = Instantiate(CurrentWeaponPrefab, weaponposition + transform.position, Quaternion.Euler(new Vector3(0, 0, angle - 90 + spread)));
             bullet.transform.position = weapononhand.transform.position + target.normalized * 0.6f;
-            bullet.GetComponent<WeaponScript>().damage = 3;
+            bullet.GetComponent<WeaponScript>().damage = 2;
         }
     }
 }
