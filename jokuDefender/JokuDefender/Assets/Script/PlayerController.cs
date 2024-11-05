@@ -14,9 +14,8 @@ public class PlayerController : MonoBehaviour, ITakeDamage
     Rigidbody2D rb;
 
     public int PlayerGold;
-    public GameObject playerui;
     public Text GoldText;
-    public Text moneyincrease;
+    public Text GoldIncrease;
 
     private Animator Animator;
     private SpriteRenderer sprite;
@@ -121,9 +120,9 @@ public class PlayerController : MonoBehaviour, ITakeDamage
         PlayerGold += Gold;
         GoldText.text = "Gold: " + PlayerGold;
 
-        Text Moneyprefab = Instantiate(moneyincrease);
+        Text Moneyprefab = Instantiate(GoldIncrease);
 
-        Moneyprefab.transform.SetParent(playerui.transform);
+        Moneyprefab.transform.SetParent(GoldText.transform);
         Moneyprefab.text = "+" + Gold;
     }
     public void TakeDamage(int damage)

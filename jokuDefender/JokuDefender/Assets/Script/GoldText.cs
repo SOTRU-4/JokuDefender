@@ -9,11 +9,11 @@ public class GoldText : MonoBehaviour
 
     private void Start()
     {
-        transform.localPosition = new Vector3(-260,0,0);
+        transform.localPosition = new Vector3(100, 0, 0);
     }
     void Update()
     {
-        transform.Translate(0,raise,0);
+        transform.Translate(0, raise, 0);
         gameObject.GetComponent<Text>().color = new Color(219, 255, 111, raise);
 
         if (raise < 0)
