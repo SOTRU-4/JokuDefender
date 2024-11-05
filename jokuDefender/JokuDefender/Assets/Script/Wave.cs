@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Wave : MonoBehaviour
@@ -13,7 +11,7 @@ public abstract class Wave : MonoBehaviour
 
     protected int GetNewWavePoints()
     {
-        wavePoints = 10;
+        wavePoints = 5;
         addPointPerWave += 3;
         if (currentWave % 5 == 0)
         {
