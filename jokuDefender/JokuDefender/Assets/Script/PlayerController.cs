@@ -10,6 +10,9 @@ public class PlayerController : MonoBehaviour, ITakeDamage
 {
     public float moveSpeed;
     public int HealthPoints = 20;
+    public Slider HealthBar;
+    public Text HealthText;
+
     float speedX, speedY;
     Rigidbody2D rb;
 
@@ -63,6 +66,11 @@ public class PlayerController : MonoBehaviour, ITakeDamage
         cooldowns["Flintlock"] = 1.2f;
         cooldowns["Shotgun"] = 1.5f;
         cooldowns["Machinegun"] = 0.1f;
+
+        HealthBar.value = HealthPoints;
+        HealthText.text = HealthPoints.ToString();
+
+        GoldText.text = "Gold: " + PlayerGold;
 
         SetWeapon(Weapon.Shovel);
     }
@@ -128,6 +136,10 @@ public class PlayerController : MonoBehaviour, ITakeDamage
     public void TakeDamage(int damage)
     {
         HealthPoints -= damage;
+        HealthBar.value = HealthPoints;
+        HealthText.text = HealthPoints.ToString();
+
+        Debug.Log(HealthPoints);
         if (HealthPoints <= 0)
         {
             Destroy(gameObject);
