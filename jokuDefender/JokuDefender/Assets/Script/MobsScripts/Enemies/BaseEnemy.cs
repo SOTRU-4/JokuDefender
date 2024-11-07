@@ -75,18 +75,17 @@ public class BaseEnemy : MonoBehaviour, ITakeDamage
             Destroy(gameObject);
         }
     }
-
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.gameObject.TryGetComponent(out ITakeDamage target) && collision.gameObject.tag != "Enemy" && delay <= 0)
         {
             target.TakeDamage(damage);
             delay = 1;
         }
-
     }
     private void OnDrawGizmos()
     {
-        Gizmos.DrawWireSphere(transform.position, 3);
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, 4.5f);
     }
 }

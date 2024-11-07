@@ -18,4 +18,4 @@ MonoBehaviour:
   healthPoints: 6
   damage: 3
   speed: 3
-  costInPoints: 4
+  costInPoints: 5

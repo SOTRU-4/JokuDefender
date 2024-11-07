@@ -162,9 +162,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.00000011920929, y: 0}
+  m_Offset: {x: -0.0043017864, y: 0}
   serializedVersion: 2
-  m_Radius: 1.504088
+  m_Radius: 2.2482946
 --- !u!1 &1125217912625589204
 GameObject:
   m_ObjectHideFlags: 0
@@ -611,7 +611,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 7825284621487264221}
   m_HandleRect: {fileID: 0}
