@@ -9,7 +9,9 @@ public class EnemyStats : ScriptableObject
     public int healthPoints;
     public int damage;
     public float speed;
+    public int gold;
     public int costInPoints;
+
 }
 
 public enum MainTarget

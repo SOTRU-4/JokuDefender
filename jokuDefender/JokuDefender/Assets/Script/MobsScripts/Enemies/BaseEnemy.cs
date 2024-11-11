@@ -1,3 +1,5 @@
+using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -19,12 +21,11 @@ public class BaseEnemy : MonoBehaviour, ITakeDamage
     public int healthPoints;
     public int damage;
     public float speed;
-    public LayerMask PlayerLayer;
     private void Awake()
     {
         Init();
     }
-    void Update()
+    void FixedUpdate()
     {
         MoveToTarget();
         delay -= Time.deltaTime;
@@ -72,12 +73,13 @@ public class BaseEnemy : MonoBehaviour, ITakeDamage
         animator.SetTrigger("Hit");
         if (healthPoints <= 0)
         {
+            PlayerController.instance.AddGold(stats.gold);
             Destroy(gameObject);
         }
     }
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if (collision.gameObject.TryGetComponent(out ITakeDamage target) && collision.gameObject.tag != "Enemy" && delay <= 0)
+        if(collision.gameObject.TryGetComponent(out ITakeDamage target) && collision.gameObject.tag != "Enemy" && delay <= 0)
         {
             target.TakeDamage(damage);
             delay = 1;

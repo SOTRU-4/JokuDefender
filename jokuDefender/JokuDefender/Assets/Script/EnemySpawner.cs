@@ -91,7 +91,7 @@ public class EnemySpawner : Wave
             }
         }
 
-        else if (currentWave >= 3 && currentWave <= 5)
+        else if (currentWave >= 4 && currentWave <= 6)
         {
             for (int i = 0; i < enemies.Count; i++)
             {

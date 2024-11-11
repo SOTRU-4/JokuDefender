@@ -15,6 +15,7 @@ public abstract class Wave : MonoBehaviour
         if (!preWaveState)
         {
             addPointPerWave += 3;
+            if (currentWave % 3 == 0) { addPointPerWave += 5; }
         }
 
         wavePoints += currentWave + addPointPerWave;

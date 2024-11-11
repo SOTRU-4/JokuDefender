@@ -17,5 +17,6 @@ MonoBehaviour:
   mainTarget: 0
   healthPoints: 5
   damage: 2
-  speed: 3
+  speed: 2.5
+  gold: 40
   costInPoints: 3
