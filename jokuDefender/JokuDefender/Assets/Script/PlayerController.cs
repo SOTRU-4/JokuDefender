@@ -12,16 +12,15 @@ public class PlayerController : MonoBehaviour, ITakeDamage
     public int HealthPoints = 20;
     public Slider HealthBar;
     public Text HealthText;
-
     float speedX, speedY;
+
     Rigidbody2D rb;
+    private Animator Animator;
+    private SpriteRenderer sprite;
 
     public int PlayerGold;
     public Text GoldText;
     public Text GoldIncrease;
-
-    private Animator Animator;
-    private SpriteRenderer sprite;
 
     private float CurrentCooldown;
 
@@ -37,6 +36,8 @@ public class PlayerController : MonoBehaviour, ITakeDamage
 
     public static PlayerController instance;
     private Weapon CurrentWeapon;
+
+    public PlayerSpawner Spawner;
 
     public enum Weapon
     {
@@ -60,6 +61,7 @@ public class PlayerController : MonoBehaviour, ITakeDamage
         sprite = GetComponent<SpriteRenderer>();
         CurrentWeaponSprite = weapononhand.GetComponent<SpriteRenderer>();
 
+        //setting weapon cooldowns
         cooldowns["Shovel"] = 1;
         cooldowns["Scythe"] = 0.65f;
         cooldowns["Pitchfork"] = 0.8f;
@@ -67,16 +69,18 @@ public class PlayerController : MonoBehaviour, ITakeDamage
         cooldowns["Shotgun"] = 1.5f;
         cooldowns["Machinegun"] = 0.1f;
 
+        //updating player gui at startup
         HealthBar.value = HealthPoints;
         HealthText.text = HealthPoints.ToString();
-
         GoldText.text = "Gold: " + PlayerGold;
 
+        //setting shovel as the starting weapon
         SetWeapon(Weapon.Shovel);
     }
 
     void Update()
     {
+        //turning the held weapon to the mouse
         Vector3 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         worldPoint.z = -0.1f;
         Vector2 lookdir = worldPoint - weapononhand.transform.position;
@@ -98,6 +102,7 @@ public class PlayerController : MonoBehaviour, ITakeDamage
         }
         weapononhand.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
 
+        //attack if cooldown is 0
         if (Time.time > lastusedtime + CurrentCooldown)
         {
             weapononhand.SetActive(true);
@@ -108,7 +113,7 @@ public class PlayerController : MonoBehaviour, ITakeDamage
             }
         }
 
-        
+        //player movement
         speedX = Input.GetAxisRaw("Horizontal") * moveSpeed;
         speedY = Input.GetAxisRaw("Vertical") * moveSpeed;
 
@@ -133,16 +138,19 @@ public class PlayerController : MonoBehaviour, ITakeDamage
         Moneyprefab.transform.SetParent(GoldText.transform);
         Moneyprefab.text = "+" + Gold;
     }
+
     public void TakeDamage(int damage)
     {
         HealthPoints -= damage;
         HealthBar.value = HealthPoints;
         HealthText.text = HealthPoints.ToString();
-
+        
         Debug.Log(HealthPoints);
+
+        //disable and respawn player if health is < 0 and spawn a new player in 5 seconds
         if (HealthPoints <= 0)
         {
-            Destroy(gameObject);
+            Spawner.spawn();
         }
     }
 

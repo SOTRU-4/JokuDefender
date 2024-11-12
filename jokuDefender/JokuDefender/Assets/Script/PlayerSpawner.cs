@@ -4,15 +4,22 @@ using UnityEngine;
 
 public class PlayerSpawner : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public GameObject player;
+    private void Start()
     {
-        
+        player = GameObject.Find("Player");
     }
-
-    // Update is called once per frame
-    void Update()
+    public void spawn()
     {
-        
+        StartCoroutine(Respawn());
+    }
+    IEnumerator Respawn()
+    {
+        player.SetActive(false);
+
+        yield return new WaitForSeconds(5);
+
+        player.transform.position = transform.position;
+        player.SetActive(true);
     }
 }
