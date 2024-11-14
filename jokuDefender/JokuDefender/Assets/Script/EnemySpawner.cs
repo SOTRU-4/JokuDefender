@@ -1,21 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
+using TMPro;
 using UnityEngine;
-using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class EnemySpawner : Wave
 {
     float spawnTime;
     public int points;
     float waitBeforeStartWave = 10;
+    [SerializeField] Text waveText;
+    Animator waveTextAnim;
     [SerializeField] List<Transform> SpawnPoints = new List<Transform>();
     [SerializeField] List<EnemyStats> enemies = new List<EnemyStats>();
+
+    int easyEnemiesCost = 4;
+    int mediumEnemiesCost = 10;
 
     void Start()
     {
         preWaveState = true;
         Wave(preWaveState);
+        waveText.TryGetComponent(out waveTextAnim);
     }
 
     public void Wave(bool isPreWave)
@@ -26,8 +32,10 @@ public class EnemySpawner : Wave
             spawnTime = Random.Range(3, 5);
         }
         else 
-        { 
-            points = GetNewWavePoints(); spawnTime = 0.5f; 
+        {
+            waveText.text = "Wave " + currentWave;
+            points = GetNewWavePoints(); spawnTime = 0.5f;
+            waveTextAnim.SetTrigger("New Wave Start");
         }
 
         StartCoroutine(Spawn(points, spawnTime));
@@ -35,11 +43,12 @@ public class EnemySpawner : Wave
 
     IEnumerator Spawn(int points, float SpawnPerSec)
     {
-        yield return new WaitForSeconds(waitBeforeStartWave);
+        
+        var thisWaveEnemies = EnemiesOfThisWave();
 
         while (points > 0) 
         {
-            var thisWaveEnemies = ThisWaveEnemies();
+            
             int randomEnemy = Random.Range(0, thisWaveEnemies.Count);
             int randomSpawnPos = Random.Range(0, SpawnPoints.Count);
 
@@ -60,30 +69,35 @@ public class EnemySpawner : Wave
             this.points = points;
         }
         StopCoroutine(Spawn(points, spawnTime));
+
+        yield return new WaitForSeconds(waitBeforeStartWave);
         NextWave();
         Wave(preWaveState);
     }
-    List<EnemyStats> ThisWaveEnemies()
+    List<EnemyStats> EnemiesOfThisWave()
     {
         List<EnemyStats> currentEnemies = new List<EnemyStats>();
-        if(currentWave <= 3)
+
+        
+
+        if(currentWave <= 2)
         {
-            foreach (EnemyStats enemy in enemies)
+            for (int i = 0; i < enemies.Count; i++)
             {
-                if (enemy.costInPoints <= 2)
+                if (enemies[i].costInPoints <= easyEnemiesCost)
                 {
-                    currentEnemies.Add(enemy);
+                    currentEnemies.Add(enemies[i]);
                 }
             }
         }
 
-        if (currentWave > 3 && currentWave <= 6)
+        else if (currentWave >= 4 && currentWave <= 6)
         {
-            foreach (EnemyStats enemy in enemies)
+            for (int i = 0; i < enemies.Count; i++)
             {
-                if (enemy.costInPoints <= 5)
+                if (enemies[i].costInPoints <= mediumEnemiesCost)
                 {
-                    currentEnemies.Add(enemy);
+                    currentEnemies.Add(enemies[i]);
                 }
             }
         }

@@ -1,19 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Bed : MonoBehaviour
+public class Bed : MonoBehaviour, ITakeDamage
 {
-    public int healthPoints = 20;
-    public static Transform bedPosition {  get; private set; }
+    public int healthPoints;
+    public HealthBar healthBar;
+    public static Transform bedPosition { get; private set; }
     void Start()
     {
         bedPosition = gameObject.transform;
+        healthBar.SetHealth(healthPoints);
+        healthBar.maxHealth = healthPoints;
     }
-
-    void Update()
+    public void TakeDamage(int damage)
     {
-        if(healthPoints <= 0)
+        healthPoints -= damage;
+        healthBar.SetHealth(healthPoints);
+        if (healthPoints <= 0)
         {
             Destroy(gameObject);
         }

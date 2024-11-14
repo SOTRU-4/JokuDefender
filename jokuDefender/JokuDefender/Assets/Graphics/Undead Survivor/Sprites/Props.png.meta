@@ -254,7 +254,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Weapon 5
+      name: ShotgunOnhand
       rect:
         serializedVersion: 2
         x: 38
@@ -275,7 +275,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bullet 0
+      name: Shovel
       rect:
         serializedVersion: 2
         x: 0
@@ -296,7 +296,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bullet 1
+      name: Pitchfork
       rect:
         serializedVersion: 2
         x: 8
@@ -317,7 +317,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bullet 2
+      name: Scythe
       rect:
         serializedVersion: 2
         x: 16
@@ -559,9 +559,6 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       Box: -38345435
-      Bullet 0: 1737672109
-      Bullet 1: -703694536
-      Bullet 2: 762804792
       Bullet 3: -537537479
       Bullet 4: -1327499133
       Bullet 5: 154122315
@@ -570,13 +567,16 @@ TextureImporter:
       Exp 2: -1997803578
       Health: 934571490
       Mag: 1997828774
+      Pitchfork: -703694536
+      Scythe: 762804792
       Shadow: 1304559308
+      ShotgunOnhand: 1772703093
+      Shovel: 1737672109
       Weapon 0: 143021600
       Weapon 1: -1972582131
       Weapon 2: 1349035616
       Weapon 3: -353751291
       Weapon 4: -144335857
-      Weapon 5: 1772703093
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

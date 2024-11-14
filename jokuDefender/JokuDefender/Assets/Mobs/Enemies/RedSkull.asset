@@ -18,4 +18,5 @@ MonoBehaviour:
   healthPoints: 8
   damage: 3
   speed: 3.5
-  costInPoints: 4
+  gold: 75
+  costInPoints: 6
