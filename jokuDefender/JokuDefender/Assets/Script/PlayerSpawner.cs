@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,9 +7,8 @@ public class PlayerSpawner : MonoBehaviour
 {
     private GameObject player;
     private PlayerController playerScript;
-    public GameObject DeathPanel;
-    public Button SpawnButton;
-
+    public Canvas deathScreen;
+    public Button spawnButton;
     public TextMeshProUGUI respawnText;
 
     private bool respawnReady;
@@ -31,21 +29,13 @@ public class PlayerSpawner : MonoBehaviour
 
     private void ShowDeathScreen()
     {
-        DeathPanel.SetActive(true);
-        //DeathPanel.GetComponent<Image>().CrossFadeAlpha(0, 1, false);
-        //SpawnButton.GetComponent<Image>().CrossFadeAlpha(0, 1, false);
-
-        //respawnText.CrossFadeAlpha(0, 1, false);
+        deathScreen.gameObject.SetActive(true);
     }
 
     public void HideDeathScreen()
     {
-        DeathPanel.SetActive(false);
-        //DeathPanel.GetComponent<Image>().CrossFadeAlpha(1, 0,false);
-        //SpawnButton.GetComponent<Image>().CrossFadeAlpha(1, 0, false);
-
-        //respawnText.color = new Color(255, 255, 255, 1);
-        SpawnButton.interactable = false;
+        deathScreen.gameObject.SetActive(false);
+        spawnButton.interactable = false;
     }
 
     public void Respawn()
@@ -72,7 +62,7 @@ public class PlayerSpawner : MonoBehaviour
             if (currentCountdown == 0)
             {
                 respawnText.text = "Respawn";
-                SpawnButton.interactable = true;
+                spawnButton.interactable = true;
                 break;
             }
             respawnText.text = currentCountdown.ToString();

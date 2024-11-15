@@ -285,7 +285,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8450525085249646867
 RectTransform:
   m_ObjectHideFlags: 0
@@ -386,7 +386,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6927485996122321571
 RectTransform:
   m_ObjectHideFlags: 0
@@ -490,6 +490,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 666a39c49cd0a314aba16042d061d84d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DeathPanel: {fileID: 6182682940274999206}
-  SpawnButton: {fileID: 7938127154240810663}
+  deathScreen: {fileID: 6854805632843149271}
+  spawnButton: {fileID: 7938127154240810663}
   respawnText: {fileID: 7635846768268147404}
