@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour, ITakeDamage
     public static PlayerController instance;
     private Weapon CurrentWeapon;
 
-    public PlayerSpawner Spawner;
+    private PlayerSpawner Spawner;
 
     public enum Weapon
     {
@@ -61,6 +61,7 @@ public class PlayerController : MonoBehaviour, ITakeDamage
         Animator = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
         CurrentWeaponSprite = weapononhand.GetComponent<SpriteRenderer>();
+        Spawner = GameObject.Find("PlayerSpawn").GetComponent<PlayerSpawner>();
 
         //setting weapon cooldowns
         cooldowns["Shovel"] = 1;

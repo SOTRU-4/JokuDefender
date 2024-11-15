@@ -1268,7 +1268,6 @@ MonoBehaviour:
   GoldIncrease: {fileID: 7624574657346296452, guid: 56ed87d4b80811b498f70fd81f0d039a, type: 3}
   weapononhand: {fileID: 4746154164272003204}
   Slashprefab: {fileID: 3770910126948194584, guid: 23d4c7f80bb27474cbfc1b1925dcfcdb, type: 3}
-  Spawner: {fileID: 0}
 --- !u!1 &2787893662378819256
 GameObject:
   m_ObjectHideFlags: 0
