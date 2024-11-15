@@ -2,6 +2,7 @@ using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.U2D;
 using UnityEngine.UI;
@@ -11,7 +12,7 @@ public class PlayerController : MonoBehaviour, ITakeDamage
     public float moveSpeed;
     public int HealthPoints = 20;
     public Slider HealthBar;
-    public Text HealthText;
+    public TextMeshProUGUI HealthText;
     float speedX, speedY;
 
     Rigidbody2D rb;
@@ -19,8 +20,8 @@ public class PlayerController : MonoBehaviour, ITakeDamage
     private SpriteRenderer sprite;
 
     public int PlayerGold;
-    public Text GoldText;
-    public Text GoldIncrease;
+    public TextMeshProUGUI GoldText;
+    public TextMeshProUGUI GoldIncrease;
 
     private float CurrentCooldown;
 
@@ -72,7 +73,7 @@ public class PlayerController : MonoBehaviour, ITakeDamage
         //updating player gui at startup
         HealthBar.value = HealthPoints;
         HealthText.text = HealthPoints.ToString();
-        GoldText.text = "Gold: " + PlayerGold;
+        GoldText.text = "Gold " + PlayerGold;
 
         //setting shovel as the starting weapon
         SetWeapon(Weapon.Shovel);
@@ -131,11 +132,14 @@ public class PlayerController : MonoBehaviour, ITakeDamage
     public void AddGold(int Gold)
     {
         PlayerGold += Gold;
-        GoldText.text = "Gold: " + PlayerGold;
+        GoldText.text = "Gold " + PlayerGold;
 
-        Text Moneyprefab = Instantiate(GoldIncrease);
+        TextMeshProUGUI Moneyprefab = Instantiate(GoldIncrease);
+
+        var count = Mathf.FloorToInt(Mathf.Log10(PlayerGold)) + 1;
 
         Moneyprefab.transform.SetParent(GoldText.transform);
+        Moneyprefab.transform.localPosition = new Vector2(50 + 8 * count,0);
         Moneyprefab.text = "+" + Gold;
     }
 
@@ -150,7 +154,7 @@ public class PlayerController : MonoBehaviour, ITakeDamage
         //disable and respawn player if health is < 0 and spawn a new player in 5 seconds
         if (HealthPoints <= 0)
         {
-            Spawner.spawn();
+            Spawner.SpawnCheck();
         }
     }
 

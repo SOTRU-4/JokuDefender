@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,11 +15,11 @@ public class Shop : MonoBehaviour
     private bool ShotgunOwned = false;
     private bool MachinegunOwned = false;
 
-    public Text ScytheOwnedtext;
-    public Text PitchforkOwnedtext;
-    public Text FlintlockOwnedtext;
-    public Text ShotgunOwnedtext;
-    public Text MachinegunOwnedtext;
+    public TextMeshProUGUI ScytheOwnedtext;
+    public TextMeshProUGUI PitchforkOwnedtext;
+    public TextMeshProUGUI FlintlockOwnedtext;
+    public TextMeshProUGUI ShotgunOwnedtext;
+    public TextMeshProUGUI MachinegunOwnedtext;
 
     public void BuyShovel()
     {
@@ -48,9 +49,9 @@ public class Shop : MonoBehaviour
         playerGold = player.PlayerGold;
         if (!PitchforkOwned)
         {
-            if (playerGold >= 1000)
+            if (playerGold >= 950)
             {
-                player.AddGold(-1000);
+                player.AddGold(-950);
                 player.SetWeapon(PlayerController.Weapon.Pitchfork);
                 PitchforkOwnedtext.text = "Owned";
             }
@@ -65,9 +66,9 @@ public class Shop : MonoBehaviour
         playerGold = player.PlayerGold;
         if (!FlintlockOwned)
         {
-            if (playerGold >= 1500)
+            if (playerGold >= 1800)
             {
-                player.AddGold(-1500);
+                player.AddGold(-1800);
                 player.SetWeapon(PlayerController.Weapon.Flintlock);
                 FlintlockOwnedtext.text = "Owned";
             }
@@ -82,9 +83,9 @@ public class Shop : MonoBehaviour
         playerGold = player.PlayerGold;
         if (!ShotgunOwned)
         {
-            if (playerGold >= 2000)
+            if (playerGold >= 3400)
             {
-                player.AddGold(-2000);
+                player.AddGold(-3400);
                 player.SetWeapon(PlayerController.Weapon.Shotgun);
                 ShotgunOwnedtext.text = "Owned";
             }
@@ -99,9 +100,9 @@ public class Shop : MonoBehaviour
         playerGold = player.PlayerGold;
         if (!MachinegunOwned)
         {
-            if (playerGold >= 2500)
+            if (playerGold >= 7500)
             {
-                player.AddGold(-2500);
+                player.AddGold(-7500);
                 player.SetWeapon(PlayerController.Weapon.Machinegun);
                 MachinegunOwnedtext.text = "Owned";
             }
