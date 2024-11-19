@@ -7,16 +7,28 @@ public class PlayerSpawner : MonoBehaviour
 {
     private GameObject player;
     private PlayerController playerScript;
-    public Canvas deathScreen;
+    public CanvasGroup deathScreen;
     public Button spawnButton;
     public TextMeshProUGUI respawnText;
 
     private bool respawnReady;
+    private bool fade;
 
     private void Start()
     {
         player = GameObject.Find("Player");
         playerScript = player.GetComponent<PlayerController>();
+    }
+
+    private void Update()
+    {
+        if (fade)
+        {
+            if (deathScreen.alpha < 1.0f)
+            {
+                deathScreen.alpha += Time.deltaTime;
+            }
+        }
     }
 
     public void SpawnCheck()
@@ -29,11 +41,14 @@ public class PlayerSpawner : MonoBehaviour
 
     private void ShowDeathScreen()
     {
+        fade = true;
         deathScreen.gameObject.SetActive(true);
     }
 
     public void HideDeathScreen()
     {
+        fade = false;
+        deathScreen.alpha = 0;
         deathScreen.gameObject.SetActive(false);
         spawnButton.interactable = false;
     }
