@@ -12,10 +12,10 @@ public abstract class Wave : MonoBehaviour
     protected int GetNewWavePoints()
     {
         wavePoints = 5;
-        if (!preWaveState)
+        addPointPerWave += 3;
+        if (!preWaveState && currentWave % 3 == 0)
         {
-            addPointPerWave += 3;
-            if (currentWave % 3 == 0) { addPointPerWave += 5; }
+            addPointPerWave += 5;
         }
 
         wavePoints += currentWave + addPointPerWave;
