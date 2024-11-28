@@ -58,7 +58,7 @@ public class PlayerSpawner : MonoBehaviour
         if (respawnReady)
         {
             player.transform.position = transform.position;
-            playerScript.HealthPoints = 20;
+            playerScript.HealthPoints = playerScript.MaxHealth;
             player.SetActive(true);
             HideDeathScreen();
             respawnText.text = "5";
