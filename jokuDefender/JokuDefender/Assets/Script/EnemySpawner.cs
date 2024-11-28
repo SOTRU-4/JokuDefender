@@ -34,7 +34,7 @@ public class EnemySpawner : Wave
         else 
         {
             waveText.text = "Wave " + currentWave;
-            points = GetNewWavePoints(); spawnTime = 0.5f;
+            points = GetNewWavePoints(); spawnTime = 0.6f;
             waveTextAnim.SetTrigger("New Wave Start");
         }
 
@@ -48,7 +48,7 @@ public class EnemySpawner : Wave
 
         while (points > 0) 
         {
-            
+            spawnTime = Random.Range(0, SpawnPerSec);
             int randomEnemy = Random.Range(0, thisWaveEnemies.Count);
             int randomSpawnPos = Random.Range(0, SpawnPoints.Count);
 

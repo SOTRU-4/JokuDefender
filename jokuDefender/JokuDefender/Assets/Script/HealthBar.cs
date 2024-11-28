@@ -3,15 +3,13 @@ using UnityEngine.UI;
 public class HealthBar : MonoBehaviour
 {
     [SerializeField] Slider slider;
-    public int maxHealth;
     [SerializeField] Vector3 offset;
 
-    public void SetHealth(int health)
+    public void SetHealth(int maxHealth, int health)
     {
         slider.maxValue = maxHealth;
-        gameObject.SetActive(health < maxHealth);
+        gameObject.SetActive(health > 0 && health < maxHealth);
         slider.value = health;
-        
     }
 
     private void Update()

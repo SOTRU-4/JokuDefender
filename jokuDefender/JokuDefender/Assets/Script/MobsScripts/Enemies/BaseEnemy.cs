@@ -21,6 +21,7 @@ public class BaseEnemy : MonoBehaviour, ITakeDamage
     public int healthPoints;
     public int damage;
     public float speed;
+    private int maxHealth;
     private void Awake()
     {
         Init();
@@ -63,13 +64,13 @@ public class BaseEnemy : MonoBehaviour, ITakeDamage
 
         behavior = new EnemyBehavior(this);
 
-        healthBar.SetHealth(healthPoints);
-        healthBar.maxHealth = healthPoints;
+        maxHealth = healthPoints;
+        healthBar.SetHealth(maxHealth, healthPoints);
     }
     public void TakeDamage(int damage)
     {
         healthPoints -= damage;
-        healthBar.SetHealth(healthPoints);
+        healthBar.SetHealth(maxHealth, healthPoints);
         animator.SetTrigger("Hit");
         if (healthPoints <= 0)
         {
