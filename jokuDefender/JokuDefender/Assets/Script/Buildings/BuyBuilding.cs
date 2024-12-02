@@ -6,14 +6,16 @@ public class BuyBuilding : MonoBehaviour
     [SerializeField] GameObject prefab;
     public BuyPoint buyPoint;
     public int buildingCost;
+    
     public void Buy()
     {
         if(PlayerController.instance.PlayerGold >= buildingCost)
         {
             var building = Instantiate(prefab, position, buyPoint.offset);
             gameObject.SetActive(false);
-            buyPoint.currentBuilding = building;
+            buyPoint.currentBuilding = building.GetComponent<Building>();
             PlayerController.instance.AddGold(-buildingCost);
+            buyPoint.currentSign.SetActive(false);
         }
     }
 

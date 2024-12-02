@@ -14,8 +14,11 @@ public class BaseEnemy : MonoBehaviour, ITakeDamage
     SpriteRenderer sprite;
     [HideInInspector] public EnemyBehavior behavior {  get; private set; }
     float delay = 1;
-    public bool isPlayerNearbye = false;
+    [HideInInspector]public bool isPlayerNearbye = false;
     Animator animator;
+
+    AudioSource audioSource;
+    [SerializeField] AudioClip deadSound;
 
     [Header("Stats")]
     public int healthPoints;
@@ -53,6 +56,8 @@ public class BaseEnemy : MonoBehaviour, ITakeDamage
         agent = GetComponent<NavMeshAgent>();
         sprite = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
+
         agent.updateRotation = false;
         agent.updateUpAxis = false;
 
@@ -71,12 +76,27 @@ public class BaseEnemy : MonoBehaviour, ITakeDamage
     {
         healthPoints -= damage;
         healthBar.SetHealth(maxHealth, healthPoints);
+        audioSource.pitch = Random.Range(0.85f, 1.15f);
+        audioSource.Play();
         animator.SetTrigger("Hit");
         if (healthPoints <= 0)
         {
             PlayerController.instance.AddGold(stats.gold);
             Destroy(gameObject);
         }
+    }
+
+    private void OnDestroy()
+    {
+        GameObject audioPlayer = new GameObject("PersistentAudioPlayer");
+        AudioSource audioSource = audioPlayer.AddComponent<AudioSource>();
+        audioSource.clip = deadSound;
+        audioSource.Play();
+        Destroy(audioPlayer, 3);
+
+        var particle = Resources.Load<GameObject>("bloodBlow");
+        var particleObject = Instantiate(particle, transform.position, Quaternion.identity);
+        Destroy(particleObject, 1f);
     }
     private void OnCollisionStay2D(Collision2D collision)
     {
