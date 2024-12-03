@@ -19,19 +19,7 @@ public class Shop : MonoBehaviour
     [HideInInspector]
     public List<int> Upgrade3 = new List<int> { 300, 450, 675, 1015, 1520, 2280 }; // Armor
 
-    //not sure if i could put 1 HideInInspector but didnt find anyting on google
-    [HideInInspector]
-    public bool Weapon0Owned = true; // shovel
-    [HideInInspector]
-    public bool Weapon1Owned = false; // scythe
-    [HideInInspector]
-    public bool Weapon2Owned = false; // pitckfork
-    [HideInInspector]
-    public bool Weapon3Owned = false; // flintlock
-    [HideInInspector]
-    public bool Weapon4Owned = false; // shotgun
-    [HideInInspector]
-    public bool Weapon5Owned = false; // machinegun
+    public bool[] weaponsOwned;
 
     public int[] Weaponcosts;
     public TextMeshProUGUI[] CostTexts;
@@ -73,15 +61,16 @@ public class Shop : MonoBehaviour
     {
         playerGold = player.PlayerGold;
 
-        bool Owned = (bool)GetType().GetField("Weapon" + index + "Owned").GetValue(this);
+        //bool Owned = (bool)GetType().GetField("Weapon" + index + "Owned").GetValue(this);
 
-        if (!Owned)
+        if (!weaponsOwned[index])
         {
             if (playerGold >= Weaponcosts[index])
             {
                 player.AddGold(-Weaponcosts[index]);
                 player.SetWeapon((PlayerController.Weapon)index);
                 CostTexts[index].text = "Owned";
+                weaponsOwned[index] = true;
             }
         }
         else
@@ -98,26 +87,21 @@ public class Shop : MonoBehaviour
         List<int> cost = (List<int>)GetType().GetField("Upgrade" + index).GetValue(this);
         int[] Levels = player.UpgradeLevels;
 
-        if (playerGold >= cost[Levels[index]] && Levels[index] < 5)  
+        if (playerGold >= cost[Levels[index]] && Levels[index] < 6)
         {
             player.AddGold(-cost[Levels[index]]);
             player.UpgradeLevels[index] += 1;
 
-            if (index == 0)
-            {
-                player.UpdateCooldown();
-                player.MaxHealth = 20 + Levels[1] * 5;
-                player.moveSpeed = 6 + Levels[2];
-                player.Armor = Levels[3];
-            }
+            player.UpdateUpgrades();
 
-            if (Levels[index] == 5)
+            if (Levels[index] == 6)
             {
                 CostTexts[index + 6].text = "Max";
                 LevelTexts[index].text = "6/6";
+                BuyButtons[index + 6].interactable = false;
             }
             else
-            {
+            { 
                 CostTexts[index + 6].text = cost[Levels[index]].ToString() + "g";
                 LevelTexts[index].text = Levels[index].ToString() + "/6";
             }

@@ -137,9 +137,13 @@ public class PlayerController : MonoBehaviour, ITakeDamage
         rb.velocity = new Vector2(speedX, speedY);
     }
 
-    public void UpdateCooldown()
+    public void UpdateUpgrades()
     {
-        CurrentCooldown = cooldowns[CurrentWeapon.ToString()] * 1 - UpgradeLevels[0] * 0.1f;
+        CurrentCooldown = cooldowns[CurrentWeapon.ToString()] * (1 - UpgradeLevels[0] * 0.1f);
+        MaxHealth = 20 + UpgradeLevels[1] * 5;
+        HealthBar.maxValue = MaxHealth;
+        moveSpeed = 6 + UpgradeLevels[2];
+        Armor = UpgradeLevels[3];
     }
 
     public void AddGold(int Gold)
@@ -165,12 +169,16 @@ public class PlayerController : MonoBehaviour, ITakeDamage
 
     public void TakeDamage(int damage)
     {
-        HealthPoints -= damage;
-        HealthBar.value = HealthPoints;
-        HealthText.text = HealthPoints.ToString();
+        int armorRoll = UnityEngine.Random.Range(0, 100);
         
-        Debug.Log(HealthPoints);
-
+        //each armor point gives a 15% chance of negating damage
+        if (armorRoll > Armor * 15)
+        {
+            HealthPoints -= damage;
+            HealthBar.value = HealthPoints;
+            HealthText.text = HealthPoints.ToString();
+        }
+        
         //disable player if health is < 0 and respawn in 5 seconds
         if (HealthPoints <= 0)
         {
@@ -206,11 +214,11 @@ public class PlayerController : MonoBehaviour, ITakeDamage
 
     public void SetWeapon(Weapon weapon)
     {
-        CurrentCooldown = cooldowns[weapon.ToString()];
-        UpdateCooldown();
         Debug.Log(cooldowns[weapon.ToString()]);
 
         CurrentWeapon = weapon;
+        UpdateUpgrades();
+
         CurrentWeaponSprite.sprite = System.Array.Find(Resources.LoadAll<Sprite>("Props"), sprite => sprite.name == weapon.ToString() + "Onhand");
 
         if (weapon == Weapon.Pitchfork)
