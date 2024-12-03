@@ -2,27 +2,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Barricade : MonoBehaviour, ITakeDamage
+public class Barricade : Building, ITakeDamage
 {
     [SerializeField] HealthBar healthBar;
     Animator animator;
-    int maxHealth = 50;
-    int currentHealth;
+    [SerializeField] AudioClip destroyedSound;
+    [SerializeField] AudioClip hitSound;
+    AudioSource audioSource;
     void Awake()
     {
         animator = GetComponent<Animator>();
-        currentHealth = maxHealth;
-        healthBar.SetHealth(maxHealth, currentHealth);
+        health = maxHealth;
+        healthBar.SetHealth(maxHealth, health);
+        audioSource = GetComponent<AudioSource>();
     }
 
     public void TakeDamage(int damage)
     {
         animator.SetTrigger("Hit");
-        currentHealth -= damage;
-        healthBar.SetHealth(maxHealth, currentHealth);
-        if (currentHealth <= 0)
+        audioSource.clip = hitSound;
+        audioSource.Play();
+        health -= damage;
+        healthBar.SetHealth(maxHealth, health);
+        if (health <= 0)
         {
             animator.SetTrigger("Destroyed");
+            audioSource.clip = destroyedSound;
+            audioSource.Play();
             Destroy(gameObject, 5);
         }
     }

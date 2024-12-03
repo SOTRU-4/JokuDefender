@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fe8b4c3d6d4fe743bf847550145c6eb, type: 3}
+  m_Name: Level 2 Tower
+  m_EditorClassIdentifier: 
+  nextLevelBuilding: {fileID: 3936469612403568745, guid: f93fdfa7ec94ed4499770aba7ab541cb, type: 3}
+  offset: -90
+  speed: 10
+  cooldown: 0.5
+  shoot: 0
+  arrow: {fileID: 4384257519262566759, guid: 9a2809d5260cb724aa02dc24603cc83e, type: 3}
+  anim: {fileID: 0}
+  tower: {fileID: 0}
+  crossbow: {fileID: 0}
