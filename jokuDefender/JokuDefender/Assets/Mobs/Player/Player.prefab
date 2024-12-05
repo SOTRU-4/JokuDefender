@@ -2365,12 +2365,13 @@ MonoBehaviour:
   Armor: 0
   HealthBar: {fileID: 319213786800600443}
   HealthText: {fileID: 4429515451937380607}
-  PlayerGold: 9999999
+  PlayerGold: 0
   GoldText: {fileID: 4284957230544576879}
   GoldIncrease: {fileID: 7624574657346296452, guid: 56ed87d4b80811b498f70fd81f0d039a, type: 3}
   WeaponOnHand: {fileID: 4746154164272003204}
   CurrentWeaponSprite: {fileID: 0}
   Slashprefab: {fileID: 3770910126948194584, guid: 23d4c7f80bb27474cbfc1b1925dcfcdb, type: 3}
+  flash: {fileID: 0}
   UpgradeLevels: 00000000000000000000000000000000
 --- !u!1 &2787893662378819256
 GameObject:
@@ -2390,7 +2391,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &495429681094805438
 RectTransform:
   m_ObjectHideFlags: 0

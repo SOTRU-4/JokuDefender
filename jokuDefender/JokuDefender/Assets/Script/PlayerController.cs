@@ -37,7 +37,8 @@ public class PlayerController : MonoBehaviour, ITakeDamage
     private GameObject CurrentWeaponPrefab;
     private Vector3 weaponposition;
     public GameObject Slashprefab;
-    
+    public GameObject flash;
+
     public static PlayerController instance;
     private Weapon CurrentWeapon;
 
@@ -74,7 +75,7 @@ public class PlayerController : MonoBehaviour, ITakeDamage
         cooldowns["Shovel"] = 1;
         cooldowns["Scythe"] = 0.65f;
         cooldowns["Pitchfork"] = 0.8f;
-        cooldowns["Flintlock"] = 1.2f;
+        cooldowns["Flintlock"] = 0.9f;
         cooldowns["Shotgun"] = 1.5f;
         cooldowns["Machinegun"] = 0.1f;
 
@@ -230,7 +231,8 @@ public class PlayerController : MonoBehaviour, ITakeDamage
             CurrentWeaponPrefab = Resources.Load<GameObject>("BulletPrefab");
         }
     }   
-
+    
+    //spaget
     void Attack(Vector3 target)
     {
         if (CurrentWeapon == Weapon.Shovel || CurrentWeapon == Weapon.Scythe)

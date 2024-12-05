@@ -13,6 +13,7 @@ public class PlayerSpawner : MonoBehaviour
 
     private bool respawnReady;
     private bool fade;
+    public Bed bed;
 
     private void Start()
     {
@@ -59,6 +60,7 @@ public class PlayerSpawner : MonoBehaviour
         {
             player.transform.position = transform.position;
             playerScript.HealthPoints = playerScript.MaxHealth;
+            playerScript.HealthBar.value = playerScript.MaxHealth;
             player.SetActive(true);
             HideDeathScreen();
             respawnText.text = "5";

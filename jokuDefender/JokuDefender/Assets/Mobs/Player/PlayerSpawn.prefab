@@ -279,6 +279,7 @@ GameObject:
   - component: {fileID: 6854805632843149271}
   - component: {fileID: 6532893165892046935}
   - component: {fileID: 7687359462986268390}
+  - component: {fileID: 2905037616410571344}
   m_Layer: 0
   m_Name: DeathGUI
   m_TagString: Untagged
@@ -369,6 +370,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!225 &2905037616410571344
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5299397467867265036}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &6182682940274999206
 GameObject:
   m_ObjectHideFlags: 0
@@ -490,6 +503,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 666a39c49cd0a314aba16042d061d84d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deathScreen: {fileID: 6854805632843149271}
+  deathScreen: {fileID: 2905037616410571344}
   spawnButton: {fileID: 7938127154240810663}
   respawnText: {fileID: 7635846768268147404}
+  bed: {fileID: 0}
