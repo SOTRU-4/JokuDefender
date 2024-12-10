@@ -30,13 +30,17 @@ public class PlayerSpawner : MonoBehaviour
                 deathScreen.alpha += Time.deltaTime;
             }
         }
+        if (respawnReady)
+        {
+            StopAllCoroutines();
+        }
     }
 
     public void SpawnCheck()
     {
+        player.SetActive(false);
         respawnReady = false;
         StartCoroutine(StartCountdown());
-        StartCoroutine(RespawnReady());
         ShowDeathScreen();
     }
 
@@ -58,6 +62,7 @@ public class PlayerSpawner : MonoBehaviour
     {
         if (respawnReady)
         {
+            StopCoroutine(StartCountdown());
             player.transform.position = transform.position;
             playerScript.HealthPoints = playerScript.MaxHealth;
             playerScript.HealthBar.value = playerScript.MaxHealth;
@@ -67,31 +72,21 @@ public class PlayerSpawner : MonoBehaviour
         }
     }
 
-    int currentCountdown;
     public IEnumerator StartCountdown(int countdown = 5)
     {
-        currentCountdown = countdown;
 
         while (true)
         {
             yield return new WaitForSeconds(1);
-            currentCountdown--;
-            if (currentCountdown == 0)
+            countdown--;
+            if (countdown <= 0)
             {
                 respawnText.text = "Respawn";
                 spawnButton.interactable = true;
+                respawnReady = true;
                 break;
             }
-            respawnText.text = currentCountdown.ToString();
+            respawnText.text = countdown.ToString();
         }
-    }
-
-    IEnumerator RespawnReady()
-    {
-        player.SetActive(false);
-
-        yield return new WaitForSeconds(5);
-
-        respawnReady = true;
     }
 }

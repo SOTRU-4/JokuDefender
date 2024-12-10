@@ -19,12 +19,16 @@ public class Shop : MonoBehaviour
     [HideInInspector]
     public List<int> Upgrade3 = new List<int> { 300, 450, 675, 1015, 1520, 2280 }; // Armor
 
-    public bool[] weaponsOwned;
+    public bool[] WeaponsOwned;
 
-    public int[] Weaponcosts;
+    public int[] WeaponCosts;
     public TextMeshProUGUI[] CostTexts;
     public TextMeshProUGUI[] LevelTexts;
     public Button[] BuyButtons;
+
+    public Button CastleButton;
+    public TextMeshProUGUI CastleText;
+    public GameObject CastlePrefab;
 
     private void Start()
     {
@@ -42,7 +46,7 @@ public class Shop : MonoBehaviour
         BuyButtons[9].onClick.AddListener(delegate { ButtonSwitch(9); });
     }
     
-    void ButtonSwitch(int index)
+    private void ButtonSwitch(int index)
     {
         Debug.Log("Buttonoon");
 
@@ -62,15 +66,15 @@ public class Shop : MonoBehaviour
         playerGold = player.PlayerGold;
 
         //bool Owned = (bool)GetType().GetField("Weapon" + index + "Owned").GetValue(this);
-
-        if (!weaponsOwned[index])
+        Debug.Log(index);
+        if (!WeaponsOwned[index])
         {
-            if (playerGold >= Weaponcosts[index])
+            if (playerGold >= WeaponCosts[index])
             {
-                player.AddGold(-Weaponcosts[index]);
+                player.AddGold(-WeaponCosts[index]);
                 player.SetWeapon((PlayerController.Weapon)index);
                 CostTexts[index].text = "Owned";
-                weaponsOwned[index] = true;
+                WeaponsOwned[index] = true;
             }
         }
         else
@@ -105,6 +109,19 @@ public class Shop : MonoBehaviour
                 CostTexts[index + 6].text = cost[Levels[index]].ToString() + "g";
                 LevelTexts[index].text = Levels[index].ToString() + "/6";
             }
+        }
+    }
+
+   public void BuyCastle()
+   {
+        playerGold = player.PlayerGold;
+
+        if (playerGold >= 1000)
+        {
+            CastleButton.interactable = false;
+            player.AddGold(-1000);
+            CastleText.text = "Owned";
+            Instantiate(CastlePrefab, new Vector3(-1.5f,2.5f,0), Quaternion.identity);
         }
     }
 }

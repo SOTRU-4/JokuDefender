@@ -285,7 +285,7 @@ public class PlayerController : MonoBehaviour, ITakeDamage
         {
             float spread = UnityEngine.Random.Range(-7, 7);
             GameObject bullet = Instantiate(CurrentWeaponPrefab, weaponposition + transform.position, Quaternion.Euler(new Vector3(0, 0, angle - 90 + spread)));
-            bullet.transform.position = WeaponOnHand.transform.position + target.normalized * 0.6f;
+            bullet.transform.position = WeaponOnHand.transform.position + target.normalized * 0.8f;
             bullet.GetComponent<WeaponScript>().damage = 2;
         }
     }
