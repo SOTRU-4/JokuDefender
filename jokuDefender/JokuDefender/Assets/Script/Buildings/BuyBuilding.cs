@@ -1,4 +1,6 @@
+using NavMeshPlus.Components;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class BuyBuilding : MonoBehaviour
 {
@@ -6,7 +8,11 @@ public class BuyBuilding : MonoBehaviour
     [SerializeField] GameObject prefab;
     public BuyPoint buyPoint;
     public int buildingCost;
-    
+    NavMeshSurface navigation;
+    private void Awake()
+    {
+        navigation = FindAnyObjectByType<NavMeshSurface>();
+    }
     public void Buy()
     {
         if(PlayerController.instance.PlayerGold >= buildingCost)
@@ -16,6 +22,7 @@ public class BuyBuilding : MonoBehaviour
             buyPoint.currentBuilding = building.GetComponent<Building>();
             PlayerController.instance.AddGold(-buildingCost);
             buyPoint.currentSign.SetActive(false);
+            navigation.BuildNavMesh();
         }
     }
 

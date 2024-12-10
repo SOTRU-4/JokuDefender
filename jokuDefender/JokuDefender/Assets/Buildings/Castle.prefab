@@ -562,7 +562,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.13856316, y: -0.5038624}
+  m_Offset: {x: 0.056121647, y: -0.5038624}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -573,7 +573,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4.1491394, y: 2.0077248}
+  m_Size: {x: 2.3580375, y: 2.0077248}
   m_EdgeRadius: 0
 --- !u!1 &1579722840283369100
 GameObject:
@@ -887,7 +887,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.07630539, y: 0.6994639}
+  m_Offset: {x: 0.021036804, y: 0.69946384}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -898,7 +898,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4.5100365, y: 2.3989282}
+  m_Size: {x: 2.757872, y: 2.3989282}
   m_EdgeRadius: 0
 --- !u!1 &1825990151112845054
 GameObject:
@@ -4231,7 +4231,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.59939957, y: -0.13186741}
+  m_Offset: {x: -0.59939957, y: -0.055600166}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -4242,7 +4242,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.1987991, y: 4.140849}
+  m_Size: {x: 2.1987991, y: 2.4629822}
   m_EdgeRadius: 0
 --- !u!1 &5248150090428844079
 GameObject:
@@ -4991,7 +4991,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.69281197, y: -0.07557917}
+  m_Offset: {x: 0.69281197, y: -0.13398439}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -5002,7 +5002,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.5871658, y: 4.0231752}
+  m_Size: {x: 2.5871658, y: 2.426755}
   m_EdgeRadius: 0
 --- !u!1 &5938956690939107075
 GameObject:

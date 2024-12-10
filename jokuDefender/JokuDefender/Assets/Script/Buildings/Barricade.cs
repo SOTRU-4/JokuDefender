@@ -19,9 +19,6 @@ public class Barricade : Building, ITakeDamage
 
     public void TakeDamage(int damage)
     {
-        animator.SetTrigger("Hit");
-        audioSource.clip = hitSound;
-        audioSource.Play();
         health -= damage;
         healthBar.SetHealth(maxHealth, health);
         if (health <= 0)
@@ -30,6 +27,10 @@ public class Barricade : Building, ITakeDamage
             audioSource.clip = destroyedSound;
             audioSource.Play();
             Destroy(gameObject, 5);
+            return;
         }
+        animator.SetTrigger("Hit");
+        audioSource.clip = hitSound;
+        audioSource.Play();
     }
 }
