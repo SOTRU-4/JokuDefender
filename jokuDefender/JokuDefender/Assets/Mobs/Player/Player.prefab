@@ -1775,6 +1775,37 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1.4
+--- !u!1 &2118397374450908844
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4718822186060287975}
+  m_Layer: 0
+  m_Name: barrel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4718822186060287975
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2118397374450908844}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.649, y: 0.107, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.1, z: 0.1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1833213013255874523}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2360383398655139512
 GameObject:
   m_ObjectHideFlags: 0
@@ -2370,8 +2401,10 @@ MonoBehaviour:
   GoldIncrease: {fileID: 7624574657346296452, guid: 56ed87d4b80811b498f70fd81f0d039a, type: 3}
   WeaponOnHand: {fileID: 4746154164272003204}
   CurrentWeaponSprite: {fileID: 0}
+  WeaponDamages: 03000000080000000a0000000200000003000000
   Slashprefab: {fileID: 3770910126948194584, guid: 23d4c7f80bb27474cbfc1b1925dcfcdb, type: 3}
-  flash: {fileID: 0}
+  flash: {fileID: 400775702617370886, guid: 12a3c24ae5b226e4a939574b913ea83d, type: 3}
+  barrel: {fileID: 2118397374450908844}
   UpgradeLevels: 00000000000000000000000000000000
 --- !u!1 &2787893662378819256
 GameObject:
@@ -3353,7 +3386,8 @@ Transform:
   m_LocalPosition: {x: -0.14445, y: -0.3, z: -0.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 4718822186060287975}
   m_Father: {fileID: 2834906030668601467}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8654874389770499513

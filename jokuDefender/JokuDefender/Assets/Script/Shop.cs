@@ -86,6 +86,8 @@ public class Shop : MonoBehaviour
     private void Upgrade(int index)
     {
         playerGold = player.PlayerGold;
+
+        //index -=6 because most of the lists for the upgrades like leveltext, upgradelevels, and the upgradecosts dont include weapons at index 0-5 like costtexts or buybuttons
         index -= 6;
 
         List<int> cost = (List<int>)GetType().GetField("Upgrade" + index).GetValue(this);

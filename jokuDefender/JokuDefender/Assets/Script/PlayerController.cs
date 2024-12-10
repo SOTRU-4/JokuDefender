@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour, ITakeDamage
 
     private float CurrentCooldown;
 
-    private Dictionary<string, float> cooldowns = new Dictionary<string, float>();
+    private Dictionary<string, float> cooldowns = new Dictionary<string, float>(); //why
     private float lastusedtime;
     private float angle;
 
@@ -36,8 +36,12 @@ public class PlayerController : MonoBehaviour, ITakeDamage
     public SpriteRenderer CurrentWeaponSprite;
     private GameObject CurrentWeaponPrefab;
     private Vector3 weaponposition;
+
+    public int[] WeaponDamages;
+
     public GameObject Slashprefab;
     public GameObject flash;
+    public GameObject barrel;
 
     public static PlayerController instance;
     private Weapon CurrentWeapon;
@@ -71,7 +75,7 @@ public class PlayerController : MonoBehaviour, ITakeDamage
         WeaponOnHandOrigin = WeaponOnHand.transform.position;
         Spawner = GameObject.Find("PlayerSpawn").GetComponent<PlayerSpawner>();
         
-        //setting weapon cooldowns
+        //why
         cooldowns["Shovel"] = 1;
         cooldowns["Scythe"] = 0.65f;
         cooldowns["Pitchfork"] = 0.8f;
@@ -102,6 +106,7 @@ public class PlayerController : MonoBehaviour, ITakeDamage
             CurrentWeaponSprite.flipY = true;
             weaponposition = new Vector3(0.14445f, -0.3f, -0.1f);
             CurrentWeaponSprite.transform.localPosition = weaponposition;
+            flipBarrel(false);
         }
         else
         {  
@@ -109,6 +114,7 @@ public class PlayerController : MonoBehaviour, ITakeDamage
             CurrentWeaponSprite.flipY = false;
             weaponposition = new Vector3(-0.14445f, -0.3f, -0.1f);
             CurrentWeaponSprite.transform.localPosition = weaponposition;
+            flipBarrel(true);
         }
         WeaponOnHand.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
 
@@ -136,6 +142,13 @@ public class PlayerController : MonoBehaviour, ITakeDamage
             Animator.SetBool("ismoving", false);
         }
         rb.velocity = new Vector2(speedX, speedY);
+    }
+
+    private void flipBarrel(bool faceRight)
+    {
+        Vector3 localPosition = barrel.transform.localPosition;
+        localPosition.y = Mathf.Abs(localPosition.y) * (faceRight ? 1 : -1);
+        barrel.transform.localPosition = localPosition;
     }
 
     public void UpdateUpgrades()
@@ -244,10 +257,14 @@ public class PlayerController : MonoBehaviour, ITakeDamage
             {
                 bullet.GetComponent<SpriteRenderer>().flipY = true;
             }
+
             Rigidbody2D bulletrb = bullet.GetComponent<Rigidbody2D>();
+
             bulletrb.transform.position = WeaponOnHand.transform.position + target.normalized * 3f;
             bulletrb.velocity = target.normalized * 5;
-            bullet.GetComponent<WeaponScript>().damage = 2;
+
+            //scythe and shovel will do the same damage no matter what because of how i coded it cant be bothered to fix
+            bullet.GetComponent<WeaponScript>().damage = WeaponDamages[0];
         }
 
         else if (CurrentWeapon == Weapon.Pitchfork)
@@ -257,17 +274,17 @@ public class PlayerController : MonoBehaviour, ITakeDamage
             float spread = UnityEngine.Random.Range(-4,4);
 
             GameObject bullet = Instantiate(CurrentWeaponPrefab, weaponposition + transform.position, Quaternion.Euler(new Vector3(0, 0, angle - 90 + spread)));
-            Rigidbody2D bulletrb = bullet.GetComponent<Rigidbody2D>();
-            bulletrb.velocity = target.normalized * 5;
-            bullet.GetComponent<WeaponScript>().damage = 4;
+
+            bullet.GetComponent<WeaponScript>().damage = WeaponDamages[1];
         }
 
         else if (CurrentWeapon == Weapon.Flintlock)
         {
             float spread = UnityEngine.Random.Range(-2, 2);
-            GameObject bullet = Instantiate(CurrentWeaponPrefab, weaponposition + transform.position, Quaternion.Euler(new Vector3(0, 0, angle - 90 + spread)));
-            bullet.transform.position = WeaponOnHand.transform.position + target.normalized * 0.6f;
-            bullet.GetComponent<WeaponScript>().damage = 10;
+            GameObject bullet = Instantiate(CurrentWeaponPrefab, barrel.transform.position + target.normalized * 0.5f, Quaternion.Euler(new Vector3(0, 0, angle - 90 + spread)));
+            Instantiate(flash, barrel.transform.position + target.normalized * 0.5f, Quaternion.Euler(new Vector3(0, 0, angle + spread)));
+
+            bullet.GetComponent<WeaponScript>().damage = WeaponDamages[2];
         }
 
         else if (CurrentWeapon == Weapon.Shotgun)
@@ -275,18 +292,21 @@ public class PlayerController : MonoBehaviour, ITakeDamage
             for (int i = 0; i < 6; i++)
             {
                 float spread = UnityEngine.Random.Range(-20, 20);
-                GameObject bullet = Instantiate(CurrentWeaponPrefab, weaponposition + transform.position, Quaternion.Euler(new Vector3(0, 0, angle - 90 + spread)));
-                bullet.transform.position = WeaponOnHand.transform.position + target.normalized * 0.6f;
-                bullet.GetComponent<WeaponScript>().damage = 3;
+                GameObject bullet = Instantiate(CurrentWeaponPrefab, barrel.transform.position + target.normalized * 0.5f, Quaternion.Euler(new Vector3(0, 0, angle - 90 + spread)));
+                Instantiate(flash, barrel.transform.position + target.normalized * 0.5f, Quaternion.Euler(new Vector3(0, 0, angle + spread)));
+
+                bullet.GetComponent<WeaponScript>().damage = WeaponDamages[3];
             }
         }
 
         else if (CurrentWeapon == Weapon.Machinegun)
         {
             float spread = UnityEngine.Random.Range(-7, 7);
-            GameObject bullet = Instantiate(CurrentWeaponPrefab, weaponposition + transform.position, Quaternion.Euler(new Vector3(0, 0, angle - 90 + spread)));
-            bullet.transform.position = WeaponOnHand.transform.position + target.normalized * 0.8f;
-            bullet.GetComponent<WeaponScript>().damage = 2;
+
+            GameObject bullet = Instantiate(CurrentWeaponPrefab, barrel.transform.position + target.normalized * 0.5f, Quaternion.Euler(new Vector3(0, 0, angle - 90 + spread)));
+            Instantiate(flash, barrel.transform.position + target.normalized * 0.5f, Quaternion.Euler(new Vector3(0, 0, angle + spread)));
+
+            bullet.GetComponent<WeaponScript>().damage = WeaponDamages[4];
         }
     }
 }

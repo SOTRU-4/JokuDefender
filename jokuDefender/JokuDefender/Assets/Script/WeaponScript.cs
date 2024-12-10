@@ -14,7 +14,7 @@ public class WeaponScript : MonoBehaviour
 
     private void Start()
     {
-        speed = UnityEngine.Random.Range(16, 20);
+        speed = UnityEngine.Random.Range(20, 23);
         rb = GetComponent<Rigidbody2D>();
         if (gameObject.name == "SlashPrefab(Clone)")
         {
