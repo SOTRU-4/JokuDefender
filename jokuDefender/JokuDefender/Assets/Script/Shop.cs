@@ -1,3 +1,4 @@
+using NavMeshPlus.Components;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -73,7 +74,7 @@ public class Shop : MonoBehaviour
             {
                 player.AddGold(-WeaponCosts[index]);
                 player.SetWeapon((PlayerController.Weapon)index);
-                CostTexts[index].text = "Owned";
+                CostTexts[index].text = "Select";
                 WeaponsOwned[index] = true;
             }
         }
@@ -114,8 +115,8 @@ public class Shop : MonoBehaviour
         }
     }
 
-   public void BuyCastle()
-   {
+    public void BuyCastle()
+    {
         playerGold = player.PlayerGold;
 
         if (playerGold >= 1000)
@@ -123,7 +124,7 @@ public class Shop : MonoBehaviour
             CastleButton.interactable = false;
             player.AddGold(-1000);
             CastleText.text = "Owned";
-            Instantiate(CastlePrefab, new Vector3(-1.5f,2.5f,0), Quaternion.identity);
+            Instantiate(CastlePrefab, new Vector3(-1.5f,2.5f,5), Quaternion.identity);
         }
     }
 }

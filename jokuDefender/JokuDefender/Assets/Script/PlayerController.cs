@@ -252,7 +252,7 @@ public class PlayerController : MonoBehaviour, ITakeDamage
         {
             StartCoroutine(FadeWeapon());
 
-            GameObject bullet = Instantiate(Slashprefab, weaponposition + transform.position, Quaternion.Euler(new Vector3(0, 0, angle)));
+            GameObject bullet = Instantiate(Slashprefab, weaponposition + transform.position + new Vector3(0, 0, 1.5f), Quaternion.Euler(new Vector3(0, 0, angle)));
             if (angle > 90 || angle < -90)
             {
                 bullet.GetComponent<SpriteRenderer>().flipY = true;
@@ -273,7 +273,7 @@ public class PlayerController : MonoBehaviour, ITakeDamage
 
             float spread = UnityEngine.Random.Range(-4,4);
 
-            GameObject bullet = Instantiate(CurrentWeaponPrefab, weaponposition + transform.position, Quaternion.Euler(new Vector3(0, 0, angle - 90 + spread)));
+            GameObject bullet = Instantiate(CurrentWeaponPrefab, weaponposition + transform.position + new Vector3(0, 0, 1.5f), Quaternion.Euler(new Vector3(0, 0, angle - 90 + spread)));
 
             bullet.GetComponent<WeaponScript>().damage = WeaponDamages[1];
         }
@@ -281,7 +281,7 @@ public class PlayerController : MonoBehaviour, ITakeDamage
         else if (CurrentWeapon == Weapon.Flintlock)
         {
             float spread = UnityEngine.Random.Range(-2, 2);
-            GameObject bullet = Instantiate(CurrentWeaponPrefab, barrel.transform.position + target.normalized * 0.5f, Quaternion.Euler(new Vector3(0, 0, angle - 90 + spread)));
+            GameObject bullet = Instantiate(CurrentWeaponPrefab, barrel.transform.position + target.normalized * 0.5f + new Vector3(0, 0, 1.5f), Quaternion.Euler(new Vector3(0, 0, angle - 90 + spread)));
             Instantiate(flash, barrel.transform.position + target.normalized * 0.5f, Quaternion.Euler(new Vector3(0, 0, angle + spread)));
 
             bullet.GetComponent<WeaponScript>().damage = WeaponDamages[2];
@@ -292,7 +292,7 @@ public class PlayerController : MonoBehaviour, ITakeDamage
             for (int i = 0; i < 6; i++)
             {
                 float spread = UnityEngine.Random.Range(-20, 20);
-                GameObject bullet = Instantiate(CurrentWeaponPrefab, barrel.transform.position + target.normalized * 0.5f, Quaternion.Euler(new Vector3(0, 0, angle - 90 + spread)));
+                GameObject bullet = Instantiate(CurrentWeaponPrefab, barrel.transform.position + target.normalized * 0.5f + new Vector3(0, 0, 1.5f), Quaternion.Euler(new Vector3(0, 0, angle - 90 + spread)));
                 Instantiate(flash, barrel.transform.position + target.normalized * 0.5f, Quaternion.Euler(new Vector3(0, 0, angle + spread)));
 
                 bullet.GetComponent<WeaponScript>().damage = WeaponDamages[3];
@@ -303,7 +303,7 @@ public class PlayerController : MonoBehaviour, ITakeDamage
         {
             float spread = UnityEngine.Random.Range(-7, 7);
 
-            GameObject bullet = Instantiate(CurrentWeaponPrefab, barrel.transform.position + target.normalized * 0.5f, Quaternion.Euler(new Vector3(0, 0, angle - 90 + spread)));
+            GameObject bullet = Instantiate(CurrentWeaponPrefab, barrel.transform.position + target.normalized * 0.5f + new Vector3(0,0,1.5f), Quaternion.Euler(new Vector3(0, 0, angle - 90 + spread)));
             Instantiate(flash, barrel.transform.position + target.normalized * 0.5f, Quaternion.Euler(new Vector3(0, 0, angle + spread)));
 
             bullet.GetComponent<WeaponScript>().damage = WeaponDamages[4];
