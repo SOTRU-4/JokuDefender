@@ -10,6 +10,8 @@ public class EnemySpawner : Wave
     public int points;
     float waitBeforeStartWave = 10;
     [SerializeField] Text waveText;
+    int bestWaveScore;
+
     Animator waveTextAnim;
     [SerializeField] List<Transform> SpawnPoints = new List<Transform>();
     [SerializeField] List<EnemyStats> enemies = new List<EnemyStats>();
@@ -19,6 +21,7 @@ public class EnemySpawner : Wave
 
     void Start()
     {
+        bestWaveScore = PlayerPrefs.GetInt("BestWaveScore");
         preWaveState = true;
         Wave(preWaveState);
         waveText.TryGetComponent(out waveTextAnim);
@@ -37,7 +40,12 @@ public class EnemySpawner : Wave
             points = GetNewWavePoints(); spawnTime = 0.6f;
             waveTextAnim.SetTrigger("New Wave Start");
         }
-
+        if(currentWave > bestWaveScore)
+        {
+            bestWaveScore = currentWave;
+            PlayerPrefs.SetInt("BestWaveScore", bestWaveScore);
+            PlayerPrefs.Save();
+        }
         StartCoroutine(Spawn(points, spawnTime));
     }
 

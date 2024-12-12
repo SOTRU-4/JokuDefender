@@ -1,3 +1,4 @@
+using System.Runtime.InteropServices;
 using UnityEngine;
 
 public abstract class Wave : MonoBehaviour
@@ -24,10 +25,13 @@ public abstract class Wave : MonoBehaviour
     }
     protected void NextWave()
     {
+        
         if (!preWaveState) 
         {
             currentWave++;
         }
         preWaveState = !preWaveState;
+        
     }
+    
 }

@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Level 3 Tower
   m_EditorClassIdentifier: 
   nextLevelBuilding: {fileID: 0}
-  offset: 0
-  speed: 0
-  cooldown: 0
+  offset: -90
+  speed: 20
+  cooldown: 0.3
   shoot: 0
-  arrow: {fileID: 0}
+  arrow: {fileID: 4279735674323711494, guid: 11c53420e7c90b74daf4318b6012a1fb, type: 3}
   anim: {fileID: 0}
   tower: {fileID: 0}
   crossbow: {fileID: 0}
