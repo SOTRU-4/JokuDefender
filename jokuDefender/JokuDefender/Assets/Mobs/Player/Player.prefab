@@ -2424,7 +2424,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &495429681094805438
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2542,7 +2542,7 @@ MonoBehaviour:
   - {fileID: 3800117245007025892}
   - {fileID: 617012756908665645}
   CastleButton: {fileID: 5411915734238335193}
-  CastleText: {fileID: 1799486840523611984}
+  CastleText: {fileID: 2240760770359346789}
   CastlePrefab: {fileID: 8173464069754043908, guid: 0962c5b8ea6a1f2499ce32f79a97b49b, type: 3}
 --- !u!1 &2851294585273531872
 GameObject:
@@ -6043,7 +6043,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Owned
+  m_text: Select
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 32884c908ca819e408c5459dfef3b48f, type: 2}
   m_sharedMaterial: {fileID: 203072796360197838, guid: 32884c908ca819e408c5459dfef3b48f, type: 2}
@@ -7678,7 +7678,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Shovel
+  m_text: Scythe
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 32884c908ca819e408c5459dfef3b48f, type: 2}
   m_sharedMaterial: {fileID: 203072796360197838, guid: 32884c908ca819e408c5459dfef3b48f, type: 2}
